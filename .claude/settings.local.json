@@ -34,7 +34,20 @@
       "Bash(node --check src/components/ui/ChoiceButton.jsx)",
       "Bash(node --check src/components/game/ChapterTransition.jsx)",
       "Bash(npx vite *)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "Bash(npx vercel *)",
+      "Bash(npx wrangler *)",
+      "Bash(gh auth *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(git checkout *)",
+      "Bash(git rm *)",
+      "Bash(git mv *)",
+      "Bash(git ls-tree *)",
+      "Bash(git ls-remote *)",
+      "Bash(curl *)",
+      "WebFetch(domain:shirasawa11.github.io)"
     ]
   }
 }

@@ -145,7 +145,7 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
   const config = atmosphereConfigs[atmosphere] || atmosphereConfigs.default
   speedRef.current = config.particleSpeed || 1.0
 
-  const imageSrc = backgroundId ? `/images/backgrounds/${backgroundId}.${imgExt}` : null
+  const imageSrc = backgroundId ? `${import.meta.env.BASE_URL}images/backgrounds/${backgroundId}.${imgExt}` : null
 
   // Reset image state when background changes
   useEffect(() => {

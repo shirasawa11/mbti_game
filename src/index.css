@@ -222,6 +222,80 @@
     0%, 100% { opacity: 0.4; transform: translateY(0); }
     50% { opacity: 0.9; transform: translateY(-2px); }
   }
+
+  /* Mist glow button — ethereal blue breathing effect for chapter transitions */
+  .mist-glow-btn {
+    background: transparent;
+    border: none;
+    color: rgba(200, 220, 240, 0.65);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    padding: 1.25rem 2.5rem;
+    cursor: pointer;
+    position: relative;
+    transition: letter-spacing 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
+                color 0.6s ease;
+    animation: mist-breathe 3.5s infinite ease-in-out;
+  }
+
+  .mist-glow-btn::before,
+  .mist-glow-btn::after {
+    content: '';
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    animation: line-breathe 3.5s infinite ease-in-out;
+  }
+
+  .mist-glow-btn::before {
+    top: 0;
+    background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.45), transparent);
+  }
+
+  .mist-glow-btn::after {
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.45), transparent);
+    animation-delay: 0.6s;
+  }
+
+  .mist-glow-btn:hover {
+    color: rgba(230, 245, 255, 0.95);
+    letter-spacing: 0.28em;
+    text-shadow:
+      0 0 10px rgba(0, 210, 255, 0.9),
+      0 0 30px rgba(0, 210, 255, 0.6),
+      0 0 60px rgba(0, 180, 255, 0.3);
+    animation-play-state: paused;
+  }
+
+  .mist-glow-btn:hover::before,
+  .mist-glow-btn:hover::after {
+    opacity: 0.9;
+    animation-play-state: paused;
+  }
+
+  @keyframes mist-breathe {
+    0%, 100% {
+      text-shadow:
+        0 0 6px rgba(0, 210, 255, 0.25),
+        0 0 16px rgba(0, 210, 255, 0.12),
+        0 0 30px rgba(0, 180, 255, 0.04);
+    }
+    50% {
+      text-shadow:
+        0 0 10px rgba(0, 210, 255, 0.65),
+        0 0 24px rgba(0, 210, 255, 0.35),
+        0 0 45px rgba(0, 180, 255, 0.12);
+    }
+  }
+
+  @keyframes line-breathe {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.6; }
+  }
 }
 
 @layer utilities {

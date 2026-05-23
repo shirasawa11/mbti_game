@@ -130,7 +130,7 @@ export default function SceneRenderer({ onChapterEnd }) {
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={handleChapterEnd}
-                className="btn-primary px-10 py-4 text-lg tracking-wider"
+                className="mist-glow-btn"
               >
                 {currentChapter < 5 ? 'NEXT CHAPTER' : 'REVEAL YOUR TYPE'}
               </motion.button>

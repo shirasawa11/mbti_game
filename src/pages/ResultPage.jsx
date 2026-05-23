@@ -29,7 +29,7 @@ export default function ResultPage() {
       {/* Ambient background */}
       <div className="fixed inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at 50% 20%, rgba(245,158,11,0.06) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(124,58,237,0.04) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at 50% 20%, rgba(236,164,0,0.06) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(0,105,146,0.04) 0%, transparent 50%)',
         }}
       />
 

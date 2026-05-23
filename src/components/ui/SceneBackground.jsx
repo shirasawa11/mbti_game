@@ -3,88 +3,88 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const atmosphereConfigs = {
   oppressive: {
-    gradient: ['#0a0a12', '#111122', '#0d0d18'],
+    gradient: ['#001125', '#001D4A', '#001125'],
     particles: 'dust',
-    accentColor: 'rgba(180, 150, 120, 0.15)',
-    overlay: 'radial-gradient(ellipse at 30% 20%, rgba(200,160,100,0.06) 0%, transparent 50%)',
+    accentColor: 'rgba(236, 164, 0, 0.08)',
+    overlay: 'radial-gradient(ellipse at 30% 20%, rgba(236,164,0,0.04) 0%, transparent 50%)',
   },
   mysterious: {
-    gradient: ['#0a0a16', '#0f0f28', '#0a0f1f'],
+    gradient: ['#001125', '#001D4A', '#001530'],
     particles: 'energy',
-    accentColor: 'rgba(100, 80, 220, 0.2)',
-    overlay: 'radial-gradient(ellipse at 60% 30%, rgba(80,60,200,0.08) 0%, transparent 50%), radial-gradient(ellipse at 40% 70%, rgba(60,180,220,0.04) 0%, transparent 40%)',
+    accentColor: 'rgba(0, 105, 146, 0.2)',
+    overlay: 'radial-gradient(ellipse at 60% 30%, rgba(0,105,146,0.1) 0%, transparent 50%), radial-gradient(ellipse at 40% 70%, rgba(236,164,0,0.03) 0%, transparent 40%)',
   },
   tense: {
-    gradient: ['#0f0a0a', '#1a1015', '#120a0e'],
+    gradient: ['#001125', '#101520', '#0a1018'],
     particles: 'ember',
-    accentColor: 'rgba(220, 60, 60, 0.2)',
-    overlay: 'radial-gradient(ellipse at 50% 50%, rgba(200,40,40,0.06) 0%, transparent 60%)',
+    accentColor: 'rgba(180, 100, 40, 0.2)',
+    overlay: 'radial-gradient(ellipse at 50% 50%, rgba(180,100,20,0.06) 0%, transparent 60%)',
   },
   calm: {
-    gradient: ['#0a0a18', '#111130', '#0e0e20'],
+    gradient: ['#001530', '#001D4A', '#27476E'],
     particles: 'light_mote',
-    accentColor: 'rgba(180, 160, 220, 0.15)',
-    overlay: 'radial-gradient(ellipse at 50% 30%, rgba(140,120,220,0.08) 0%, transparent 55%)',
+    accentColor: 'rgba(0, 105, 146, 0.12)',
+    overlay: 'radial-gradient(ellipse at 50% 30%, rgba(0,105,146,0.06) 0%, transparent 55%)',
   },
   solemn: {
-    gradient: ['#0f0f18', '#151528', '#101018'],
+    gradient: ['#001530', '#001D4A', '#101828'],
     particles: 'light_mote',
-    accentColor: 'rgba(200, 180, 140, 0.15)',
-    overlay: 'radial-gradient(ellipse at 50% 20%, rgba(220,200,140,0.08) 0%, transparent 50%)',
+    accentColor: 'rgba(236, 164, 0, 0.1)',
+    overlay: 'radial-gradient(ellipse at 50% 20%, rgba(236,164,0,0.06) 0%, transparent 50%)',
   },
   fog: {
-    gradient: ['#0c0c1a', '#141428', '#0e0e20'],
+    gradient: ['#001530', '#001D4A', '#27476E'],
     particles: 'energy',
-    accentColor: 'rgba(160, 180, 210, 0.08)',
-    overlay: 'radial-gradient(ellipse at 50% 50%, rgba(150,170,200,0.04) 0%, transparent 60%)',
+    accentColor: 'rgba(0, 105, 146, 0.1)',
+    overlay: 'radial-gradient(ellipse at 50% 50%, rgba(0,105,146,0.05) 0%, transparent 60%)',
   },
   fog_dark: {
-    gradient: ['#080812', '#0e0e1e', '#060610'],
+    gradient: ['#001125', '#001530', '#000a18'],
     particles: 'dust',
-    accentColor: 'rgba(100, 100, 130, 0.08)',
-    overlay: 'radial-gradient(ellipse at 50% 50%, rgba(60,60,80,0.03) 0%, transparent 50%)',
+    accentColor: 'rgba(0, 105, 146, 0.06)',
+    overlay: 'radial-gradient(ellipse at 50% 50%, rgba(0,30,60,0.05) 0%, transparent 50%)',
   },
   mirror_room: {
-    gradient: ['#0a0a1a', '#121030', '#0a0a20'],
+    gradient: ['#001530', '#001D4A', '#0a2035'],
     particles: 'energy',
-    accentColor: 'rgba(180, 150, 220, 0.12)',
-    overlay: 'radial-gradient(ellipse at 50% 40%, rgba(180,150,220,0.06) 0%, transparent 45%), radial-gradient(ellipse at 50% 60%, rgba(150,180,220,0.04) 0%, transparent 45%)',
+    accentColor: 'rgba(0, 105, 146, 0.15)',
+    overlay: 'radial-gradient(ellipse at 50% 40%, rgba(0,105,146,0.08) 0%, transparent 45%), radial-gradient(ellipse at 50% 60%, rgba(0,105,146,0.04) 0%, transparent 45%)',
   },
   red_glow: {
-    gradient: ['#0f0a0a', '#1a0e12', '#10080a'],
+    gradient: ['#001125', '#151018', '#0a0a14'],
     particles: 'ember',
-    accentColor: 'rgba(220, 60, 50, 0.2)',
-    overlay: 'radial-gradient(ellipse at 50% 60%, rgba(220,40,40,0.1) 0%, transparent 50%)',
+    accentColor: 'rgba(200, 120, 40, 0.2)',
+    overlay: 'radial-gradient(ellipse at 50% 60%, rgba(200,120,20,0.08) 0%, transparent 50%)',
   },
   abyss: {
-    gradient: ['#050510', '#0a0a18', '#030308'],
+    gradient: ['#000810', '#001125', '#00050a'],
     particles: 'ember',
-    accentColor: 'rgba(80, 40, 80, 0.1)',
-    overlay: 'radial-gradient(ellipse at 50% 80%, rgba(100,20,80,0.06) 0%, transparent 40%)',
+    accentColor: 'rgba(39, 71, 110, 0.15)',
+    overlay: 'radial-gradient(ellipse at 50% 80%, rgba(39,71,110,0.08) 0%, transparent 40%)',
   },
   abyss_fade: {
-    gradient: ['#080818', '#121228', '#0a0a18'],
+    gradient: ['#001530', '#001D4A', '#27476E'],
     particles: 'light_mote',
-    accentColor: 'rgba(140, 120, 180, 0.1)',
-    overlay: 'radial-gradient(ellipse at 50% 30%, rgba(140,120,200,0.06) 0%, transparent 50%)',
+    accentColor: 'rgba(0, 105, 146, 0.1)',
+    overlay: 'radial-gradient(ellipse at 50% 30%, rgba(0,105,146,0.05) 0%, transparent 50%)',
   },
   core: {
-    gradient: ['#0f0f18', '#1a1a28', '#121218'],
+    gradient: ['#001D4A', '#27476E', '#101820'],
     particles: 'light_mote',
-    accentColor: 'rgba(220, 200, 160, 0.12)',
-    overlay: 'radial-gradient(ellipse at 50% 40%, rgba(240,220,180,0.1) 0%, transparent 50%)',
+    accentColor: 'rgba(236, 164, 0, 0.15)',
+    overlay: 'radial-gradient(ellipse at 50% 40%, rgba(236,164,0,0.08) 0%, transparent 50%)',
   },
   fog_fade: {
-    gradient: ['#0c0c1e', '#161630', '#0e0e20'],
+    gradient: ['#001530', '#001D4A', '#27476E'],
     particles: 'light_mote',
-    accentColor: 'rgba(160, 180, 210, 0.08)',
-    overlay: 'radial-gradient(ellipse at 50% 30%, rgba(180,200,220,0.06) 0%, transparent 55%)',
+    accentColor: 'rgba(0, 105, 146, 0.08)',
+    overlay: 'radial-gradient(ellipse at 50% 30%, rgba(0,105,146,0.05) 0%, transparent 55%)',
   },
   default: {
-    gradient: ['#0a0a14', '#121222', '#0c0c18'],
+    gradient: ['#001125', '#001D4A', '#001530'],
     particles: 'dust',
-    accentColor: 'rgba(150, 140, 180, 0.12)',
-    overlay: 'radial-gradient(ellipse at 50% 30%, rgba(120,100,200,0.06) 0%, transparent 50%)',
+    accentColor: 'rgba(0, 105, 146, 0.1)',
+    overlay: 'radial-gradient(ellipse at 50% 30%, rgba(0,105,146,0.05) 0%, transparent 50%)',
   },
 }
 
@@ -108,13 +108,13 @@ function createParticle(type) {
 
   switch (type) {
     case 'dust':
-      return { ...base, speed: 0.05 + Math.random() * 0.15, wobble: 0.3 + Math.random() * 0.7, color: `rgba(180,160,140,${base.opacity})` }
+      return { ...base, speed: 0.05 + Math.random() * 0.15, wobble: 0.3 + Math.random() * 0.7, color: `rgba(188,201,176,${base.opacity})` }
     case 'energy':
-      return { ...base, size: 0.3 + Math.random() * 1.5, speed: 0.15 + Math.random() * 0.5, color: `rgba(140,100,255,${base.opacity})`, trail: true }
+      return { ...base, size: 0.3 + Math.random() * 1.5, speed: 0.15 + Math.random() * 0.5, color: `rgba(0,140,180,${base.opacity})`, trail: true }
     case 'ember':
-      return { ...base, speed: 0.2 + Math.random() * 0.8, size: 0.5 + Math.random() * 2.5, color: `rgba(255,${80 + Math.floor(Math.random() * 100)},${20 + Math.floor(Math.random() * 40)},${base.opacity})`, rise: true }
+      return { ...base, speed: 0.2 + Math.random() * 0.8, size: 0.5 + Math.random() * 2.5, color: `rgba(236,${140 + Math.floor(Math.random() * 60)},${20 + Math.floor(Math.random() * 30)},${base.opacity})`, rise: true }
     case 'light_mote':
-      return { ...base, speed: 0.08 + Math.random() * 0.2, size: 0.3 + Math.random() * 1, color: `rgba(220,200,160,${base.opacity})`, glow: true }
+      return { ...base, speed: 0.08 + Math.random() * 0.2, size: 0.3 + Math.random() * 1, color: `rgba(236,210,150,${base.opacity})`, glow: true }
     default:
       return base
   }

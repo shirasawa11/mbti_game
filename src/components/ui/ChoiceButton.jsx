@@ -13,8 +13,8 @@ export default function ChoiceButton({ choice, onSelect, disabled, index }) {
                  transition-all duration-200 ease-out
                  bg-maze-800/60 border-maze-600
                  hover:border-maze-primary hover:bg-maze-700/60
-                 hover:shadow-[0_0_15px_rgba(124,58,237,0.15)]
-                 focus-visible:border-maze-primary focus-visible:shadow-[0_0_0_2px_rgba(124,58,237,0.3)]
+                 hover:shadow-[0_0_15px_rgba(0,105,146,0.15)]
+                 focus-visible:border-maze-primary focus-visible:shadow-[0_0_0_2px_rgba(0,105,146,0.3)]
                  disabled:opacity-30 disabled:cursor-not-allowed
                  active:bg-maze-700 group"
     >

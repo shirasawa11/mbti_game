@@ -66,7 +66,7 @@ export default function IntroPage() {
         transition={{ duration: 3, repeat: Infinity }}
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(124,58,237,0.08) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at center, rgba(0,105,146,0.08) 0%, transparent 50%)',
         }}
       />
 
@@ -109,7 +109,7 @@ export default function IntroPage() {
               animate={{ width: 80 }}
               transition={{ delay: 0.3, duration: 1 }}
               className="h-px mx-auto mb-8"
-              style={{ background: 'linear-gradient(90deg, transparent, #F43F5E, transparent)' }}
+              style={{ background: 'linear-gradient(90deg, transparent, #ECA400, transparent)' }}
             />
             <motion.p
               initial={{ opacity: 0 }}

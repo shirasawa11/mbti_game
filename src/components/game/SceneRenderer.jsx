@@ -87,7 +87,7 @@ export default function SceneRenderer({ onChapterEnd }) {
                   key={ch}
                   className={`h-1 rounded-full transition-all duration-500 ${
                     ch <= currentChapter
-                      ? 'bg-maze-primary shadow-[0_0_6px_rgba(124,58,237,0.5)] w-4'
+                      ? 'bg-maze-primary shadow-[0_0_6px_rgba(0,105,146,0.5)] w-4'
                       : 'bg-maze-700 w-2'
                   }`}
                 />
@@ -125,7 +125,7 @@ export default function SceneRenderer({ onChapterEnd }) {
                 animate={{ width: 60 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="h-px mx-auto mb-6"
-                style={{ background: 'linear-gradient(90deg, transparent, rgba(124,58,237,0.6), transparent)' }}
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(0,105,146,0.6), transparent)' }}
               />
               <motion.button
                 whileTap={{ scale: 0.95 }}

@@ -19,7 +19,7 @@ export default function ChapterTransition({ chapter, onComplete }) {
       {/* Ambient glow */}
       <div className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(124,58,237,0.1) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at center, rgba(0,105,146,0.1) 0%, transparent 50%)',
         }}
       />
 
@@ -58,7 +58,7 @@ export default function ChapterTransition({ chapter, onComplete }) {
         animate={{ width: 80 }}
         transition={{ delay: 1.0, duration: 0.8 }}
         className="relative z-10 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(124,58,237,0.6), transparent)' }}
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(0,105,146,0.6), transparent)' }}
       />
 
       <motion.p

@@ -23,7 +23,10 @@
       "Bash(npx -y @evilurge/puter-mcp --help)",
       "Bash(npm list *)",
       "Bash(npx puter-mcp *)",
-      "WebFetch(domain:docs.puter.com)"
+      "WebFetch(domain:docs.puter.com)",
+      "Bash(cmd *)",
+      "Bash(start *)",
+      "WebFetch(domain:coolors.co)"
     ]
   }
 }

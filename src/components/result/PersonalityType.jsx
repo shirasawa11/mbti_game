@@ -55,7 +55,7 @@ export default function PersonalityType({ dimensions }) {
                   className="h-full rounded-full"
                   style={{
                     background: `linear-gradient(90deg, var(--color-maze-primary), var(--color-maze-secondary))`,
-                    boxShadow: '0 0 8px rgba(124,58,237,0.3)',
+                    boxShadow: '0 0 8px rgba(0,105,146,0.3)',
                   }}
                 />
               </div>

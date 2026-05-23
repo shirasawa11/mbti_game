@@ -58,7 +58,7 @@ export default function SharePanel({ mbtiType, personality }) {
           onClick={handleShare}
           className="flex-1 min-h-[44px] py-3 rounded-xl bg-maze-primary/20 border border-maze-primary/40
                      text-maze-primary font-medium tracking-wide
-                     hover:bg-maze-primary/30 hover:shadow-[0_0_20px_rgba(124,58,237,0.2)]
+                     hover:bg-maze-primary/30 hover:shadow-[0_0_20px_rgba(0,105,146,0.2)]
                      transition-all duration-200 active:scale-[0.97] cursor-pointer text-sm"
         >
           SAVE CARD

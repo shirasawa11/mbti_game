@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-maze-950: #050510;
-  --color-maze-900: #0F0F23;
-  --color-maze-800: #151530;
-  --color-maze-700: #1C1C40;
-  --color-maze-600: #282850;
-  --color-maze-500: #3A3A65;
-  --color-maze-primary: #7C3AED;
-  --color-maze-secondary: #A78BFA;
-  --color-maze-cta: #F43F5E;
-  --color-maze-gold: #F59E0B;
-  --color-maze-teal: #2DD4BF;
-  --color-maze-text: #E2E8F0;
-  --color-maze-subtle: #94A3B8;
-  --color-maze-muted: #64748B;
+  --color-maze-950: #001125;
+  --color-maze-900: #001530;
+  --color-maze-800: #001D4A;
+  --color-maze-700: #27476E;
+  --color-maze-600: #335577;
+  --color-maze-500: #4A7088;
+  --color-maze-primary: #006992;
+  --color-maze-secondary: #0088B0;
+  --color-maze-cta: #ECA400;
+  --color-maze-gold: #ECA400;
+  --color-maze-teal: #006992;
+  --color-maze-text: #EAF8BF;
+  --color-maze-subtle: #BCC9B0;
+  --color-maze-muted: #7A8A78;
   --font-display: 'Chakra Petch', 'PingFang SC', system-ui, sans-serif;
   --font-body: 'Chakra Petch', 'PingFang SC', system-ui, sans-serif;
   --font-serif: 'Noto Serif SC', 'Georgia', serif;
@@ -66,43 +66,37 @@
 
 @layer components {
   .maze-card {
-    background: linear-gradient(135deg, color-mix(in srgb, var(--color-maze-800) 90%, transparent), color-mix(in srgb, var(--color-maze-700) 90%, transparent));
+    background: linear-gradient(160deg, var(--color-maze-800), var(--color-maze-700));
     border: 1px solid var(--color-maze-600);
     border-radius: 1rem;
     box-shadow:
       0 4px 32px rgba(0, 0, 0, 0.5),
-      0 0 1px rgba(124, 58, 237, 0.1);
+      0 0 1px rgba(0, 105, 146, 0.1);
     backdrop-filter: blur(12px);
   }
 
   .maze-glow {
     box-shadow:
-      0 0 20px rgba(124, 58, 237, 0.2),
-      0 0 60px rgba(124, 58, 237, 0.08),
-      inset 0 0 1px rgba(124, 58, 237, 0.1);
-  }
-
-  .maze-glow-rose {
-    box-shadow:
-      0 0 20px rgba(244, 63, 94, 0.2),
-      0 0 60px rgba(244, 63, 94, 0.08);
+      0 0 20px rgba(0, 105, 146, 0.2),
+      0 0 60px rgba(0, 105, 146, 0.08),
+      inset 0 0 1px rgba(0, 105, 146, 0.1);
   }
 
   .maze-glow-gold {
     box-shadow:
-      0 0 20px rgba(245, 158, 11, 0.2),
-      0 0 60px rgba(245, 158, 11, 0.06);
+      0 0 20px rgba(236, 164, 0, 0.2),
+      0 0 60px rgba(236, 164, 0, 0.06);
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, var(--color-maze-primary), var(--color-maze-secondary));
+    background: linear-gradient(135deg, var(--color-maze-primary), var(--color-maze-gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, var(--color-maze-gold), #FCD34D);
+    background: linear-gradient(135deg, var(--color-maze-gold), #F5C94D);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -110,29 +104,14 @@
 
   .text-glow {
     text-shadow:
-      0 0 7px rgba(124, 58, 237, 0.5),
-      0 0 20px rgba(124, 58, 237, 0.2);
+      0 0 7px rgba(0, 105, 146, 0.5),
+      0 0 20px rgba(0, 105, 146, 0.2);
   }
 
   .text-glow-gold {
     text-shadow:
-      0 0 7px rgba(245, 158, 11, 0.5),
-      0 0 20px rgba(245, 158, 11, 0.2);
-  }
-
-  .scanlines::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.03) 2px,
-      rgba(0, 0, 0, 0.03) 4px
-    );
-    pointer-events: none;
-    z-index: 100;
+      0 0 7px rgba(236, 164, 0, 0.5),
+      0 0 20px rgba(236, 164, 0, 0.2);
   }
 
   .btn-primary {
@@ -143,19 +122,19 @@
     min-width: 44px;
     padding: 0.75rem 2rem;
     border-radius: 0.75rem;
-    background: linear-gradient(135deg, var(--color-maze-primary), color-mix(in srgb, var(--color-maze-primary) 80%, var(--color-maze-secondary)));
+    background: linear-gradient(135deg, var(--color-maze-primary), var(--color-maze-secondary));
     color: white;
     font-weight: 500;
     font-family: var(--font-display);
     cursor: pointer;
     transition: all 200ms ease-out;
-    border: 1px solid rgba(124, 58, 237, 0.3);
+    border: 1px solid rgba(0, 105, 146, 0.4);
   }
 
   .btn-primary:hover {
     box-shadow:
-      0 0 20px rgba(124, 58, 237, 0.4),
-      0 0 40px rgba(124, 58, 237, 0.15);
+      0 0 20px rgba(0, 105, 146, 0.4),
+      0 0 40px rgba(0, 105, 146, 0.15);
     transform: translateY(-1px);
   }
 

@@ -19,7 +19,7 @@ export default function ChoicePanel({ choices, visible, onSelect }) {
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ delay: 0.1, duration: 0.5 }}
             className="h-px mx-auto mb-4 max-w-[120px]"
-            style={{ background: 'linear-gradient(90deg, transparent, rgba(124,58,237,0.4), transparent)' }}
+            style={{ background: 'linear-gradient(90deg, transparent, rgba(0,105,146,0.4), transparent)' }}
           />
 
           <motion.p

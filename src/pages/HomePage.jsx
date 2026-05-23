@@ -12,7 +12,7 @@ export default function HomePage() {
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at 50% 30%, rgba(124,58,237,0.12) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(244,63,94,0.06) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(45,212,191,0.04) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at 50% 30%, rgba(0,105,146,0.12) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(236,164,0,0.06) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(0,136,176,0.04) 0%, transparent 50%)',
         }}
       />
 
@@ -54,7 +54,7 @@ export default function HomePage() {
           animate={{ width: 120 }}
           transition={{ delay: 0.3, duration: 1.2, ease: 'easeOut' }}
           className="h-px mx-auto mb-8"
-          style={{ background: 'linear-gradient(90deg, transparent, #7C3AED, #A78BFA, transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, #006992, #0088B0, transparent)' }}
         />
 
         <motion.p
@@ -113,7 +113,7 @@ export default function HomePage() {
           animate={{ width: 60 }}
           transition={{ delay: 2.0, duration: 1, ease: 'easeOut' }}
           className="h-px mx-auto mt-10"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(124,58,237,0.5), transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, rgba(0,105,146,0.5), transparent)' }}
         />
       </div>
 

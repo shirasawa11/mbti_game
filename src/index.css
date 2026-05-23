@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-maze-900: #0a0a0f;
+  --color-maze-800: #12121a;
+  --color-maze-700: #1a1a2e;
+  --color-maze-600: #25253e;
+  --color-maze-500: #3a3a5c;
+  --color-maze-accent: #7c3aed;
+  --color-maze-gold: #c9a84c;
+  --color-maze-teal: #2dd4bf;
+  --color-maze-rose: #e11d48;
+  --color-maze-text: #e2e0e7;
+  --color-maze-subtle: #8b8a9a;
+  --font-maze: 'Georgia', 'Noto Serif SC', serif;
+  --font-ui: 'Inter', 'PingFang SC', system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    background: var(--color-maze-900);
+    color: var(--color-maze-text);
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+}
+
+@layer components {
+  .maze-card {
+    background: linear-gradient(135deg, var(--color-maze-800), var(--color-maze-700));
+    border: 1px solid var(--color-maze-600);
+    border-radius: 1rem;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .maze-glow {
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.15), 0 0 60px rgba(124, 58, 237, 0.05);
+  }
+
+  .maze-glow-gold {
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.15), 0 0 60px rgba(201, 168, 76, 0.05);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-maze-accent), var(--color-maze-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, var(--color-maze-gold), #f0d87c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}

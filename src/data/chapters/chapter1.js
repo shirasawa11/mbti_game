@@ -1,0 +1,195 @@
+const chapter1 = {
+  id: 1,
+  title: '第一章 · 觉醒',
+  subtitle: '黑暗中睁开双眼',
+  startScene: 'ch1_wake',
+  scenes: {
+    ch1_wake: {
+      id: 'ch1_wake',
+      chapter: 1,
+      background: 'dark_void',
+      atmosphere: 'oppressive',
+      dialogs: [
+        { speaker: 'narrator', text: '意识从黑暗中缓缓浮现。', delay: 0 },
+        { speaker: 'narrator', text: '你不知道自己是谁。', delay: 800 },
+        { speaker: 'narrator', text: '也不知道自己为何会在这里。', delay: 600 },
+        { speaker: 'narrator', text: '眼前的一切渐渐清晰——', delay: 800 },
+        { speaker: 'narrator', text: '你发现自己身处一个狭窄的石室。', delay: 500 },
+        { speaker: 'narrator', text: '角落蜷缩着一个受伤的身影，微弱地喘息着。', delay: 600 },
+        { speaker: 'narrator', text: '你的左前方，一扇沉重的铁门半掩着，门缝中透出幽蓝色的光。', delay: 600 },
+        { speaker: 'narrator', text: '一个声音从门后传来，低语着，听不清内容。', delay: 600 },
+      ],
+      choices: [
+        {
+          id: 'help_wounded',
+          text: '走向受伤的人',
+          subtext: '他看起来需要帮助',
+          effects: { F: 2, I: 1 },
+          flags: { helpedNPC: true },
+          nextScene: 'ch1_help_npc',
+        },
+        {
+          id: 'approach_door',
+          text: '靠近铁门',
+          subtext: '那个声音在召唤你',
+          effects: { N: 2, P: 1 },
+          flags: { approachedDoor: true },
+          nextScene: 'ch1_door',
+        },
+        {
+          id: 'wait_observe',
+          text: '暂时不动，先观察周围',
+          subtext: '在未知环境中，谨慎是美德',
+          effects: { S: 2, J: 1 },
+          flags: { observedFirst: true },
+          nextScene: 'ch1_observe',
+        },
+      ],
+    },
+
+    ch1_help_npc: {
+      id: 'ch1_help_npc',
+      chapter: 1,
+      background: 'dark_void',
+      atmosphere: 'tense',
+      dialogs: [
+        { speaker: 'narrator', text: '你走近那个蜷缩的身影。', delay: 0 },
+        { speaker: 'wounded_traveler', text: '...你...你是新的到来者...', emotion: 'pain', delay: 400 },
+        { speaker: 'wounded_traveler', text: '小心...这个迷宫...它会改变你...', emotion: 'fearful', delay: 500 },
+        { speaker: 'narrator', text: '他的身上刻满了发光的符文。', delay: 300 },
+        { speaker: 'wounded_traveler', text: '那扇门...不要去...那是...陷阱...', emotion: 'urgent', delay: 400 },
+        { speaker: 'narrator', text: '门后的低语声变大了。你听到了自己的名字。', delay: 500 },
+      ],
+      choices: [
+        {
+          id: 'stay_with_npc',
+          text: '留下来照顾他',
+          subtext: '你的良知不允许你丢下他',
+          effects: { F: 3, J: 2 },
+          flags: { stayedWithNPC: true },
+          nextScene: 'ch1_stay',
+        },
+        {
+          id: 'go_door_after_npc',
+          text: '安慰他，然后走向铁门',
+          subtext: '你需要解开这个迷宫的谜团',
+          effects: { N: 1, P: 1, F: 1 },
+          flags: { wentToDoorAfterHelp: true },
+          nextScene: 'ch1_door',
+        },
+      ],
+    },
+
+    ch1_stay: {
+      id: 'ch1_stay',
+      chapter: 1,
+      background: 'dark_void',
+      atmosphere: 'calm',
+      dialogs: [
+        { speaker: 'narrator', text: '你选择留下。', delay: 0 },
+        { speaker: 'wounded_traveler', text: '谢谢你...很少有人会这么做...', emotion: 'grateful', delay: 400 },
+        { speaker: 'wounded_traveler', text: '但我不能拖累你。拿着这个...', emotion: 'calm', delay: 500 },
+        { speaker: 'narrator', text: '他递给你一块刻着符文的石头。石头在你手心微微发热。', delay: 500 },
+        { speaker: 'wounded_traveler', text: '它会帮你找到...真正的路。', emotion: 'calm', delay: 400 },
+        { speaker: 'narrator', text: '石室开始震颤。一面隐藏的墙缓缓下沉，露出新的通道。', delay: 500 },
+        { speaker: 'narrator', text: '第一章 · 觉醒 · 完', delay: 300 },
+      ],
+      choices: [],
+    },
+
+    ch1_door: {
+      id: 'ch1_door',
+      chapter: 1,
+      background: 'blue_glow',
+      atmosphere: 'mysterious',
+      dialogs: [
+        { speaker: 'narrator', text: '你推开了铁门。', delay: 0 },
+        { speaker: 'narrator', text: '幽蓝色的光芒如潮水般涌来。', delay: 400 },
+        { speaker: 'whispering_voice', text: '你终于来了...', emotion: 'mysterious', delay: 500 },
+        { speaker: 'whispering_voice', text: '我知道你是谁。我知道你在找什么。', emotion: 'soothing', delay: 400 },
+        { speaker: 'narrator', text: '光芒之中，你隐约看见无数条路径在延伸。', delay: 500 },
+        { speaker: 'whispering_voice', text: '选一条路吧。选对了，你会找到真相。', emotion: 'urgent', delay: 400 },
+      ],
+      choices: [
+        {
+          id: 'follow_light',
+          text: '跟随最亮的光芒',
+          subtext: '直觉告诉你，那里有答案',
+          effects: { N: 2, P: 2 },
+          flags: { followedLight: true },
+          nextScene: 'ch1_end_light',
+        },
+        {
+          id: 'follow_path',
+          text: '仔细观察每条路径的地面痕迹',
+          subtext: '细节不会说谎',
+          effects: { S: 2, J: 2 },
+          flags: { followedTraces: true },
+          nextScene: 'ch1_end_trace',
+        },
+      ],
+    },
+
+    ch1_observe: {
+      id: 'ch1_observe',
+      chapter: 1,
+      background: 'dark_void',
+      atmosphere: 'tense',
+      dialogs: [
+        { speaker: 'narrator', text: '你没有急于行动。', delay: 0 },
+        { speaker: 'narrator', text: '石室的墙壁上有古老的铭文。', delay: 400 },
+        { speaker: 'narrator', text: '"迷宫会映照你的灵魂。每一个选择，都是你的一部分。"', delay: 500 },
+        { speaker: 'narrator', text: '那个受伤的人动了动，低声呻吟。', delay: 500 },
+        { speaker: 'narrator', text: '门后的低语变成了轻笑。', delay: 400 },
+      ],
+      choices: [
+        {
+          id: 'help_after_observe',
+          text: '先帮助受伤的人',
+          subtext: '铭文可以之后再研究',
+          effects: { F: 2, S: 1 },
+          flags: { helpedAfterObserve: true },
+          nextScene: 'ch1_help_npc',
+        },
+        {
+          id: 'door_after_observe',
+          text: '铭文提到了"映照灵魂"——走向铁门',
+          subtext: '你想验证这个说法',
+          effects: { N: 2, S: 1 },
+          flags: { approachedDoorAfterRead: true },
+          nextScene: 'ch1_door',
+        },
+      ],
+    },
+
+    ch1_end_light: {
+      id: 'ch1_end_light',
+      chapter: 1,
+      background: 'blue_glow',
+      atmosphere: 'mysterious',
+      dialogs: [
+        { speaker: 'narrator', text: '你闭上眼睛，跟随光芒的指引。', delay: 0 },
+        { speaker: 'narrator', text: '当你再次睁眼，面前是一条向下延伸的螺旋阶梯。', delay: 500 },
+        { speaker: 'whispering_voice', text: '聪明的选择...但还不够。', emotion: 'mysterious', delay: 400 },
+        { speaker: 'narrator', text: '第一章 · 觉醒 · 完', delay: 300 },
+      ],
+      choices: [],
+    },
+
+    ch1_end_trace: {
+      id: 'ch1_end_trace',
+      chapter: 1,
+      background: 'dark_void',
+      atmosphere: 'calm',
+      dialogs: [
+        { speaker: 'narrator', text: '你蹲下来，仔细检查地面。', delay: 0 },
+        { speaker: 'narrator', text: '某条路径上的灰尘被反复踩过。你选择了这条路。', delay: 500 },
+        { speaker: 'narrator', text: '通道尽头，一扇通往下一层的暗门缓缓打开。', delay: 500 },
+        { speaker: 'narrator', text: '第一章 · 觉醒 · 完', delay: 300 },
+      ],
+      choices: [],
+    },
+  },
+}
+
+export default chapter1

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Read(//d/code/**)",
+      "Bash(rm -rf mbti_game_temp)",
+      "Bash(cp -r /d/code/mbti_game_temp/* /d/code/mbti_game/)",
+      "Bash(cp /d/code/mbti_game_temp/.gitignore /d/code/mbti_game/)",
+      "Bash(rm -rf /d/code/mbti_game_temp)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}

@@ -5,84 +5,98 @@ const atmosphereConfigs = {
   oppressive: {
     gradient: ['#001125', '#001D4A', '#001125'],
     particles: 'dust',
+    particleSpeed: 1.8,
     accentColor: 'rgba(236, 164, 0, 0.08)',
     overlay: 'radial-gradient(ellipse at 30% 20%, rgba(236,164,0,0.04) 0%, transparent 50%)',
   },
   mysterious: {
     gradient: ['#001125', '#001D4A', '#001530'],
     particles: 'energy',
+    particleSpeed: 1.0,
     accentColor: 'rgba(0, 105, 146, 0.2)',
     overlay: 'radial-gradient(ellipse at 60% 30%, rgba(0,105,146,0.1) 0%, transparent 50%), radial-gradient(ellipse at 40% 70%, rgba(236,164,0,0.03) 0%, transparent 40%)',
   },
   tense: {
     gradient: ['#001125', '#101520', '#0a1018'],
     particles: 'ember',
+    particleSpeed: 1.5,
     accentColor: 'rgba(180, 100, 40, 0.2)',
     overlay: 'radial-gradient(ellipse at 50% 50%, rgba(180,100,20,0.06) 0%, transparent 60%)',
   },
   calm: {
     gradient: ['#001530', '#001D4A', '#27476E'],
     particles: 'light_mote',
+    particleSpeed: 0.45,
     accentColor: 'rgba(0, 105, 146, 0.12)',
     overlay: 'radial-gradient(ellipse at 50% 30%, rgba(0,105,146,0.06) 0%, transparent 55%)',
   },
   solemn: {
     gradient: ['#001530', '#001D4A', '#101828'],
     particles: 'light_mote',
+    particleSpeed: 0.35,
     accentColor: 'rgba(236, 164, 0, 0.1)',
     overlay: 'radial-gradient(ellipse at 50% 20%, rgba(236,164,0,0.06) 0%, transparent 50%)',
   },
   fog: {
     gradient: ['#001530', '#001D4A', '#27476E'],
     particles: 'energy',
+    particleSpeed: 0.55,
     accentColor: 'rgba(0, 105, 146, 0.1)',
     overlay: 'radial-gradient(ellipse at 50% 50%, rgba(0,105,146,0.05) 0%, transparent 60%)',
   },
   fog_dark: {
     gradient: ['#001125', '#001530', '#000a18'],
     particles: 'dust',
+    particleSpeed: 0.3,
     accentColor: 'rgba(0, 105, 146, 0.06)',
     overlay: 'radial-gradient(ellipse at 50% 50%, rgba(0,30,60,0.05) 0%, transparent 50%)',
   },
   mirror_room: {
     gradient: ['#001530', '#001D4A', '#0a2035'],
     particles: 'energy',
+    particleSpeed: 1.1,
     accentColor: 'rgba(0, 105, 146, 0.15)',
     overlay: 'radial-gradient(ellipse at 50% 40%, rgba(0,105,146,0.08) 0%, transparent 45%), radial-gradient(ellipse at 50% 60%, rgba(0,105,146,0.04) 0%, transparent 45%)',
   },
   red_glow: {
     gradient: ['#001125', '#151018', '#0a0a14'],
     particles: 'ember',
+    particleSpeed: 1.6,
     accentColor: 'rgba(200, 120, 40, 0.2)',
     overlay: 'radial-gradient(ellipse at 50% 60%, rgba(200,120,20,0.08) 0%, transparent 50%)',
   },
   abyss: {
     gradient: ['#000810', '#001125', '#00050a'],
     particles: 'ember',
+    particleSpeed: 0.5,
     accentColor: 'rgba(39, 71, 110, 0.15)',
     overlay: 'radial-gradient(ellipse at 50% 80%, rgba(39,71,110,0.08) 0%, transparent 40%)',
   },
   abyss_fade: {
     gradient: ['#001530', '#001D4A', '#27476E'],
     particles: 'light_mote',
+    particleSpeed: 0.4,
     accentColor: 'rgba(0, 105, 146, 0.1)',
     overlay: 'radial-gradient(ellipse at 50% 30%, rgba(0,105,146,0.05) 0%, transparent 50%)',
   },
   core: {
     gradient: ['#001D4A', '#27476E', '#101820'],
     particles: 'light_mote',
+    particleSpeed: 0.7,
     accentColor: 'rgba(236, 164, 0, 0.15)',
     overlay: 'radial-gradient(ellipse at 50% 40%, rgba(236,164,0,0.08) 0%, transparent 50%)',
   },
   fog_fade: {
     gradient: ['#001530', '#001D4A', '#27476E'],
     particles: 'light_mote',
+    particleSpeed: 0.5,
     accentColor: 'rgba(0, 105, 146, 0.08)',
     overlay: 'radial-gradient(ellipse at 50% 30%, rgba(0,105,146,0.05) 0%, transparent 55%)',
   },
   default: {
     gradient: ['#001125', '#001D4A', '#001530'],
     particles: 'dust',
+    particleSpeed: 1.0,
     accentColor: 'rgba(0, 105, 146, 0.1)',
     overlay: 'radial-gradient(ellipse at 50% 30%, rgba(0,105,146,0.05) 0%, transparent 50%)',
   },
@@ -124,10 +138,12 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
   const canvasRef = useRef(null)
   const particlesRef = useRef([])
   const animFrameRef = useRef(null)
+  const speedRef = useRef(1.0)
   const [imgLoaded, setImgLoaded] = useState(false)
   const [imgError, setImgError] = useState(false)
   const [imgExt, setImgExt] = useState('png')
   const config = atmosphereConfigs[atmosphere] || atmosphereConfigs.default
+  speedRef.current = config.particleSpeed || 1.0
 
   const imageSrc = backgroundId ? `/images/backgrounds/${backgroundId}.${imgExt}` : null
 
@@ -158,12 +174,12 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
 
     for (const p of particles) {
       if (p.rise) {
-        p.y -= p.speed * 0.15
+        p.y -= p.speed * 0.15 * speedRef.current
         if (p.y < -0.05) { p.y = 1.05; p.x = Math.random() }
       } else {
-        p.y += p.speed * 0.1 * Math.sin(Date.now() * 0.00025 + p.phase)
+        p.y += p.speed * 0.1 * speedRef.current * Math.sin(Date.now() * 0.00025 + p.phase)
       }
-      p.x += Math.sin(Date.now() * 0.0004 + p.phase) * p.wobble * 0.08 || 0
+      p.x += Math.sin(Date.now() * 0.0004 + p.phase) * p.wobble * 0.08 * speedRef.current || 0
 
       if (p.y > 1.05) p.y = -0.05
       if (p.x > 1.05) p.x = -0.05
@@ -262,10 +278,11 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
         <div className="absolute inset-0" style={{ background: config.overlay }} />
 
         {/* Canvas particles */}
-        <canvas
+        <motion.canvas
           ref={canvasRef}
           className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{ opacity: 0.7 }}
+          animate={{ opacity: [0, 0.6, 0.6, 0, 0] }}
+          transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', times: [0, 0.1, 0.45, 0.55, 1] }}
         />
 
         {/* Scanlines */}

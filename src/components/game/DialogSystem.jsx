@@ -43,7 +43,7 @@ export default function DialogSystem() {
   const hasMore = currentDialogIndex < dialogQueue.length - 1
 
   return (
-    <div className="flex-1 flex flex-col justify-end px-4 pb-4 pt-20" onClick={handleAdvance}>
+    <div className="flex-1 flex flex-col justify-start px-4 pb-4" style={{ paddingTop: '18vh' }} onClick={handleAdvance}>
       <AnimatePresence mode="wait">
         <motion.div
           key={`${currentDialog.speaker}-${currentDialogIndex}`}

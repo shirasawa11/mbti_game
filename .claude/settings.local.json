@@ -18,7 +18,12 @@
       "WebSearch",
       "Bash(uipro init *)",
       "Bash(python3 *)",
-      "Bash(python *)"
+      "Bash(python *)",
+      "Bash(npx -y puter-mcp --version)",
+      "Bash(npx -y @evilurge/puter-mcp --help)",
+      "Bash(npm list *)",
+      "Bash(npx puter-mcp *)",
+      "WebFetch(domain:docs.puter.com)"
     ]
   }
 }

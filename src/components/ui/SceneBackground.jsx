@@ -126,15 +126,25 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
   const animFrameRef = useRef(null)
   const [imgLoaded, setImgLoaded] = useState(false)
   const [imgError, setImgError] = useState(false)
+  const [imgExt, setImgExt] = useState('png')
   const config = atmosphereConfigs[atmosphere] || atmosphereConfigs.default
 
-  const imageSrc = backgroundId ? `/images/backgrounds/${backgroundId}.png` : null
+  const imageSrc = backgroundId ? `/images/backgrounds/${backgroundId}.${imgExt}` : null
 
   // Reset image state when background changes
   useEffect(() => {
     setImgLoaded(false)
     setImgError(false)
-  }, [imageSrc])
+    setImgExt('png')
+  }, [backgroundId])
+
+  const handleImgError = () => {
+    if (imgExt === 'png') {
+      setImgExt('jpg')
+    } else {
+      setImgError(true)
+    }
+  }
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current
@@ -236,7 +246,7 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
               src={imageSrc}
               alt=""
               onLoad={() => setImgLoaded(true)}
-              onError={() => setImgError(true)}
+              onError={handleImgError}
               className="absolute inset-0 w-full h-full object-cover"
             />
             {/* Subtle dark overlay on image for text readability */}

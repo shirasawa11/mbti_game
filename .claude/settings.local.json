@@ -47,7 +47,10 @@
       "Bash(git ls-tree *)",
       "Bash(git ls-remote *)",
       "Bash(curl *)",
-      "WebFetch(domain:shirasawa11.github.io)"
+      "WebFetch(domain:shirasawa11.github.io)",
+      "Bash(grep *)",
+      "WebFetch(domain:github.com)",
+      "Bash(echo \"exit: $?\")"
     ]
   }
 }

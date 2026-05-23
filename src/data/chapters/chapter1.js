@@ -23,7 +23,7 @@ const chapter1 = {
         {
           id: 'help_wounded',
           text: '走向受伤的人',
-          subtext: '他看起来需要帮助',
+          subtext: '他还活着...',
           effects: { F: 2, I: 1 },
           flags: { helpedNPC: true },
           nextScene: 'ch1_help_npc',
@@ -31,7 +31,7 @@ const chapter1 = {
         {
           id: 'approach_door',
           text: '靠近铁门',
-          subtext: '那个声音在召唤你',
+          subtext: '那个声音...在低唤你的名字',
           effects: { N: 2, P: 1 },
           flags: { approachedDoor: true },
           nextScene: 'ch1_door',
@@ -39,7 +39,7 @@ const chapter1 = {
         {
           id: 'wait_observe',
           text: '暂时不动，先观察周围',
-          subtext: '在未知环境中，谨慎是美德',
+          subtext: '在暗处，才能看清暗处',
           effects: { S: 2, J: 1 },
           flags: { observedFirst: true },
           nextScene: 'ch1_observe',
@@ -64,7 +64,7 @@ const chapter1 = {
         {
           id: 'stay_with_npc',
           text: '留下来照顾他',
-          subtext: '你的良知不允许你丢下他',
+          subtext: '你不能就这样走开',
           effects: { F: 3, J: 2 },
           flags: { stayedWithNPC: true },
           nextScene: 'ch1_stay',
@@ -72,7 +72,7 @@ const chapter1 = {
         {
           id: 'go_door_after_npc',
           text: '安慰他，然后走向铁门',
-          subtext: '你需要解开这个迷宫的谜团',
+          subtext: '他需要安抚，但答案在门后',
           effects: { N: 1, P: 1, F: 1 },
           flags: { wentToDoorAfterHelp: true },
           nextScene: 'ch1_door',
@@ -114,7 +114,7 @@ const chapter1 = {
         {
           id: 'follow_light',
           text: '跟随最亮的光芒',
-          subtext: '直觉告诉你，那里有答案',
+          subtext: '你的脚步已经不自觉地朝它迈去',
           effects: { N: 2, P: 2 },
           flags: { followedLight: true },
           nextScene: 'ch1_end_light',
@@ -122,7 +122,7 @@ const chapter1 = {
         {
           id: 'follow_path',
           text: '仔细观察每条路径的地面痕迹',
-          subtext: '细节不会说谎',
+          subtext: '灰尘从不说谎',
           effects: { S: 2, J: 2 },
           flags: { followedTraces: true },
           nextScene: 'ch1_end_trace',
@@ -146,7 +146,7 @@ const chapter1 = {
         {
           id: 'help_after_observe',
           text: '先帮助受伤的人',
-          subtext: '铭文可以之后再研究',
+          subtext: '铭文是死的，人是活的',
           effects: { F: 2, S: 1 },
           flags: { helpedAfterObserve: true },
           nextScene: 'ch1_help_npc',
@@ -154,7 +154,7 @@ const chapter1 = {
         {
           id: 'door_after_observe',
           text: '铭文提到了"映照灵魂"——走向铁门',
-          subtext: '你想验证这个说法',
+          subtext: '你想知道，镜子会映照出什么',
           effects: { N: 2, S: 1 },
           flags: { approachedDoorAfterRead: true },
           nextScene: 'ch1_door',

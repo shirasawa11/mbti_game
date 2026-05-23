@@ -16,13 +16,13 @@ const chapter3 = {
         { speaker: 'mirror_self', text: '我是你一直压抑的那一面。', emotion: 'truthful', delay: 500 },
         { speaker: 'mirror_self', text: '让我们做个交易。我可以告诉你迷宫的真相——', emotion: 'testing', delay: 500 },
         { speaker: 'mirror_self', text: '但作为交换，你需要放弃你在这里最珍贵的那段记忆。', emotion: 'sad', delay: 600 },
-        { speaker: 'narrator', text: '你的手心开始冒汗。不是害怕——而是这个选择触及了你的本质。', delay: 500 },
+        { speaker: 'narrator', text: '你的手心开始冒汗。', delay: 500 },
       ],
       choices: [
         {
           id: 'accept_trade',
           text: '接受交易——真相更重要',
-          subtext: '理性告诉你，记忆是可以舍弃的代价',
+          subtext: '你想知道真相，无论代价是什么',
           effects: { T: 3, N: 2 },
           flags: { acceptedTrade: true },
           nextScene: 'ch3_trade_accepted',
@@ -30,7 +30,7 @@ const chapter3 = {
         {
           id: 'reject_trade',
           text: '拒绝——记忆定义了我',
-          subtext: '无论真相是什么，你不想失去任何一部分自己',
+          subtext: '失去一部分自己，还算活着吗',
           effects: { F: 3, I: 1 },
           flags: { rejectedTrade: true },
           nextScene: 'ch3_trade_rejected',
@@ -38,7 +38,7 @@ const chapter3 = {
         {
           id: 'negotiate',
           text: '寻求第三方方案',
-          subtext: '一定有折中的办法',
+          subtext: '为什么只给两个选项？一定还有别的路',
           effects: { N: 1, P: 1, F: 1 },
           flags: { negotiated: true },
           nextScene: 'ch3_negotiate',
@@ -55,8 +55,8 @@ const chapter3 = {
         { speaker: 'mirror_self', text: '聪明。', emotion: 'approving', delay: 0 },
         { speaker: 'narrator', text: '一股冰冷的感觉流过你的脑海。', delay: 400 },
         { speaker: 'narrator', text: '一段记忆消失了。你甚至不记得失去了什么。', delay: 500 },
-        { speaker: 'mirror_self', text: '迷宫是活的。它以人格为食。', emotion: 'truthful', delay: 400 },
-        { speaker: 'mirror_self', text: '每做一个选择，你就在喂食它。最终，你会变成——', emotion: 'mocking', delay: 500 },
+        { speaker: 'mirror_self', text: '迷宫是活的。它以选择为食。', emotion: 'truthful', delay: 400 },
+        { speaker: 'mirror_self', text: '你每做一个决定，它就更了解你一分。最终——', emotion: 'mocking', delay: 500 },
         { speaker: 'narrator', text: '镜中的倒影突然碎裂。', delay: 300 },
         { speaker: 'narrator', text: '镜子后面露出一条通道。通道尽头发着红光。', delay: 500 },
       ],
@@ -64,7 +64,7 @@ const chapter3 = {
         {
           id: 'rush_through',
           text: '毫不犹豫走进去',
-          subtext: '你已经付出了代价，必须继续',
+          subtext: '已经走到这一步了',
           effects: { J: 2, T: 1 },
           flags: { rushedIn: true },
           nextScene: 'ch3_end',
@@ -72,7 +72,7 @@ const chapter3 = {
         {
           id: 'pause_reflect',
           text: '停一下，消化刚才的信息',
-          subtext: '你需要整理思绪再前进',
+          subtext: '你需要一分钟...就一分钟',
           effects: { I: 2, S: 1 },
           flags: { pausedToReflect: true },
           nextScene: 'ch3_end',
@@ -94,8 +94,8 @@ const chapter3 = {
       choices: [
         {
           id: 'utilitarian',
-          text: '牺牲少数拯救多数——这是理性选择',
-          subtext: '数字不会说谎',
+          text: '牺牲少数拯救多数——这是更合理的选择',
+          subtext: '如果必须选一边，答案很清楚',
           effects: { T: 3, J: 1 },
           flags: { utilitarian: true },
           nextScene: 'ch3_end',
@@ -103,7 +103,7 @@ const chapter3 = {
         {
           id: 'deontological',
           text: '每个生命都有不可替代的价值',
-          subtext: '不能把生命当作数字',
+          subtext: '你没有资格替那"少数"做决定',
           effects: { F: 3, P: 1 },
           flags: { deontological: true },
           nextScene: 'ch3_end',
@@ -126,7 +126,7 @@ const chapter3 = {
         {
           id: 'answer_truth',
           text: '"迷宫害怕一个不按规则出牌的人"',
-          subtext: '直觉告诉你这个答案',
+          subtext: '你不确定为什么——但你感觉这就是答案',
           effects: { N: 3, P: 1 },
           flags: { answeredCorrect: true },
           nextScene: 'ch3_end',
@@ -134,7 +134,7 @@ const chapter3 = {
         {
           id: 'answer_emotion',
           text: '"迷宫害怕真正了解自己的人"',
-          subtext: '你觉得这是更深层的答案',
+          subtext: '真正看清自己的人，不会被任何东西困住',
           effects: { F: 2, I: 2 },
           flags: { answeredDeep: true },
           nextScene: 'ch3_end',

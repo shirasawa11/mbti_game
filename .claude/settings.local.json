@@ -27,7 +27,8 @@
       "Bash(cmd *)",
       "Bash(start *)",
       "WebFetch(domain:coolors.co)",
-      "Bash(git revert *)"
+      "Bash(git revert *)",
+      "Bash(node -e ' *)"
     ]
   }
 }

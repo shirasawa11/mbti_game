@@ -21,7 +21,7 @@ const chapter4 = {
         {
           id: 'plan_route',
           text: '仔细规划每一块落脚石',
-          subtext: '三思而后行——你有足够的时间计算',
+          subtext: '一格格来...你可以的',
           effects: { J: 3, S: 2 },
           flags: { plannedJumps: true },
           nextScene: 'ch4_planning',
@@ -29,7 +29,7 @@ const chapter4 = {
         {
           id: 'leap_faith',
           text: '相信直觉，直接跳过去',
-          subtext: '过度思考只会让你坠落',
+          subtext: '想太多只会让脚步更沉',
           effects: { P: 3, N: 2 },
           flags: { leapOfFaith: true },
           nextScene: 'ch4_leap',
@@ -37,7 +37,7 @@ const chapter4 = {
         {
           id: 'listen_voices',
           text: '聆听深渊中的声音',
-          subtext: '或许它们知道该怎么走',
+          subtext: '它们在这里待了这么久，或许知道怎么走',
           effects: { N: 2, I: 1, P: 1 },
           flags: { listenedToVoices: true },
           nextScene: 'ch4_voices',
@@ -61,7 +61,7 @@ const chapter4 = {
         {
           id: 'stick_to_plan',
           text: '坚持原计划，但加快速度',
-          subtext: '计划是好的，只是需要执行到位',
+          subtext: '计划本身没问题，只需要执行得更快',
           effects: { J: 2, T: 1 },
           flags: { stuckToPlan: true },
           nextScene: 'ch4_end',
@@ -69,7 +69,7 @@ const chapter4 = {
         {
           id: 'improvise',
           text: '计划已经没用了——随机应变',
-          subtext: '情况变了，策略也要变',
+          subtext: '情况变了，死守计划等于送死',
           effects: { P: 2, N: 1 },
           flags: { improvised: true },
           nextScene: 'ch4_end',
@@ -92,7 +92,7 @@ const chapter4 = {
         {
           id: 'keep_jumping',
           text: '继续保持速度——不要停下来',
-          subtext: '速度就是你最大的优势',
+          subtext: '停下来就完了',
           effects: { P: 2, E: 1 },
           flags: { keptJumping: true },
           nextScene: 'ch4_end',
@@ -100,7 +100,7 @@ const chapter4 = {
         {
           id: 'slow_down',
           text: '到中段时放慢——观察前方',
-          subtext: '冲刺够了，现在需要策略',
+          subtext: '冲够了，现在需要眼睛',
           effects: { J: 1, S: 2 },
           flags: { slowedDown: true },
           nextScene: 'ch4_end',
@@ -125,7 +125,7 @@ const chapter4 = {
         {
           id: 'follow_rhythm',
           text: '跟随石头的"呼吸"韵律',
-          subtext: '这个建议与众不同，而且很具体',
+          subtext: '这个声音...和其他的不一样',
           effects: { N: 3, I: 1 },
           flags: { followedRhythm: true },
           nextScene: 'ch4_end',
@@ -133,7 +133,7 @@ const chapter4 = {
         {
           id: 'combined_approach',
           text: '结合声音的建议和自己的判断',
-          subtext: '全听别人的等于把自己的命运交给别人',
+          subtext: '耳朵听着，但脚是自己的',
           effects: { S: 1, T: 1, J: 1 },
           flags: { combinedApproach: true },
           nextScene: 'ch4_end',

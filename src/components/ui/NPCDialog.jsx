@@ -38,11 +38,7 @@ export default function NPCDialog({ speaker, text, emotion, onComplete }) {
         </motion.div>
       )}
 
-      <div className={`relative ${
-        isNarrator
-          ? 'bg-maze-950/50 backdrop-blur-sm rounded-xl px-4 py-3 border border-maze-700/20'
-          : 'bg-maze-950/55 backdrop-blur-sm rounded-xl px-4 py-3 border border-maze-700/25'
-      }`}>
+      <div className={isNarrator ? 'pl-0 border-l-2 border-maze-primary/20 pl-3' : 'pl-[52px]'}>
         <p className={`leading-relaxed tracking-wide ${
           isNarrator
             ? 'text-maze-muted italic text-sm font-[family-name:var(--font-serif)]'

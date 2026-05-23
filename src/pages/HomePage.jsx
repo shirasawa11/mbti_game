@@ -96,15 +96,9 @@ export default function HomePage() {
           transition={{ delay: 1.6 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setPhase('intro')}
-          className="btn-primary px-12 py-4 text-lg tracking-wider relative overflow-hidden group"
+          className="mist-glow-btn"
         >
-          <span className="relative z-10">ENTER THE MAZE</span>
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
-            initial={{ x: '-100%' }}
-            whileHover={{ x: '100%' }}
-            transition={{ duration: 0.6 }}
-          />
+          <span>ENTER THE MAZE</span>
         </motion.button>
 
         {/* Bottom accent line */}

@@ -128,7 +128,7 @@ export default function IntroPage() {
                 e.stopPropagation()
                 handleEnter()
               }}
-              className="btn-primary px-10 py-4 text-lg tracking-wider"
+              className="mist-glow-btn"
             >
               睁开双眼
             </motion.button>

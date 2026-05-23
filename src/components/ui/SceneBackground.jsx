@@ -108,13 +108,13 @@ function createParticle(type) {
 
   switch (type) {
     case 'dust':
-      return { ...base, speed: 0.05 + Math.random() * 0.15, wobble: 0.3 + Math.random() * 0.7, color: `rgba(188,201,176,${base.opacity})` }
+      return { ...base, speed: 0.015 + Math.random() * 0.04, wobble: 0.15 + Math.random() * 0.35, color: `rgba(188,201,176,${base.opacity})` }
     case 'energy':
-      return { ...base, size: 0.3 + Math.random() * 1.5, speed: 0.15 + Math.random() * 0.5, color: `rgba(0,140,180,${base.opacity})`, trail: true }
+      return { ...base, size: 0.3 + Math.random() * 1.5, speed: 0.04 + Math.random() * 0.12, color: `rgba(0,140,180,${base.opacity})`, trail: true }
     case 'ember':
-      return { ...base, speed: 0.2 + Math.random() * 0.8, size: 0.5 + Math.random() * 2.5, color: `rgba(236,${140 + Math.floor(Math.random() * 60)},${20 + Math.floor(Math.random() * 30)},${base.opacity})`, rise: true }
+      return { ...base, speed: 0.05 + Math.random() * 0.2, size: 0.5 + Math.random() * 2.5, color: `rgba(236,${140 + Math.floor(Math.random() * 60)},${20 + Math.floor(Math.random() * 30)},${base.opacity})`, rise: true }
     case 'light_mote':
-      return { ...base, speed: 0.08 + Math.random() * 0.2, size: 0.3 + Math.random() * 1, color: `rgba(236,210,150,${base.opacity})`, glow: true }
+      return { ...base, speed: 0.02 + Math.random() * 0.06, size: 0.3 + Math.random() * 1, color: `rgba(236,210,150,${base.opacity})`, glow: true }
     default:
       return base
   }
@@ -158,12 +158,12 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
 
     for (const p of particles) {
       if (p.rise) {
-        p.y -= p.speed * 0.3
+        p.y -= p.speed * 0.15
         if (p.y < -0.05) { p.y = 1.05; p.x = Math.random() }
       } else {
-        p.y += p.speed * 0.2 * Math.sin(Date.now() * 0.0005 + p.phase)
+        p.y += p.speed * 0.1 * Math.sin(Date.now() * 0.00025 + p.phase)
       }
-      p.x += Math.sin(Date.now() * 0.0008 + p.phase) * p.wobble * 0.15 || 0
+      p.x += Math.sin(Date.now() * 0.0004 + p.phase) * p.wobble * 0.08 || 0
 
       if (p.y > 1.05) p.y = -0.05
       if (p.x > 1.05) p.x = -0.05
@@ -171,7 +171,7 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
 
       const px = p.x * w
       const py = p.y * h
-      const alpha = 0.3 + 0.7 * Math.sin(Date.now() * 0.001 + p.phase)
+      const alpha = 0.3 + 0.7 * Math.sin(Date.now() * 0.0005 + p.phase)
 
       ctx.beginPath()
       if (p.glow) {

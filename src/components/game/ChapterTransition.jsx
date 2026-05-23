@@ -56,7 +56,7 @@ export default function ChapterTransition({ chapter, onComplete }) {
         transition={{ delay: 0.15, duration: 0.6, ease: 'easeOut' }}
         className="relative z-10 mb-6"
       >
-        <span className="text-6xl font-bold text-maze-primary/10 font-[family-name:var(--font-display)]">
+        <span className="text-6xl font-bold text-maze-primary/10 font-[family-name:var(--font-display)] tracking-wider">
           {String(chapter).padStart(2, '0')}
         </span>
       </motion.div>
@@ -65,7 +65,8 @@ export default function ChapterTransition({ chapter, onComplete }) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
-        className="relative z-10 text-maze-subtle text-xs tracking-[0.3em] uppercase mb-4 font-medium"
+        className="relative z-10 text-[#c9a054] text-xs tracking-[0.3em] uppercase mb-4 font-medium font-[family-name:var(--font-display)]"
+        style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}
       >
         {data.title}
       </motion.p>
@@ -97,11 +98,13 @@ export default function ChapterTransition({ chapter, onComplete }) {
           <motion.span
             animate={{ opacity: [0.3, 0.8, 0.3] }}
             transition={{ duration: 2, repeat: Infinity }}
+            className="action-prompt"
           >
-            [ SPACE 或 点击继续 ]
+            <span className="key-badge">SPACE</span>
+            <span>点击继续</span>
           </motion.span>
         ) : (
-          ' '
+          <span>&nbsp;</span>
         )}
       </motion.p>
     </motion.div>

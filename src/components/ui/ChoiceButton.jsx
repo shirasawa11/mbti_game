@@ -43,11 +43,11 @@ export default function ChoiceButton({ choice, onSelect, disabled, index }) {
           {index + 1}
         </span>
         <div className="min-w-0">
-          <p className="text-maze-text text-sm leading-relaxed group-hover:text-white transition-colors duration-300">
+          <p className="text-maze-text text-sm leading-relaxed group-hover:text-white transition-colors duration-300 [text-shadow:1px_1px_3px_rgba(0,0,0,0.6)]">
             {choice.text}
           </p>
           {choice.subtext && (
-            <p className="text-maze-muted text-xs mt-1.5 leading-relaxed group-hover:text-maze-subtle transition-colors duration-300">
+            <p className="text-maze-muted text-xs mt-1.5 leading-relaxed group-hover:text-maze-subtle transition-colors duration-300 [text-shadow:1px_1px_2px_rgba(0,0,0,0.5)]">
               {choice.subtext}
             </p>
           )}

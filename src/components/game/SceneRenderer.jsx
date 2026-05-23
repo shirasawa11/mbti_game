@@ -78,7 +78,7 @@ export default function SceneRenderer({ onChapterEnd }) {
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-3"
           >
-            <span className="text-maze-muted text-[10px] tracking-[0.25em] uppercase font-medium">
+            <span className="chapter-title-ui">
               {getChapter(currentChapter)?.title || `CH.${currentChapter}`}
             </span>
             <div className="flex gap-1.5 ml-auto">

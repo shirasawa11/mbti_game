@@ -12,7 +12,10 @@ export default function ChoicePanel({ choices, visible, onSelect }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: '100%' }}
           transition={{ type: 'spring', damping: 26, stiffness: 220 }}
-          className="px-4 pb-6 pt-3"
+          className="px-4 pb-8 pt-3"
+          style={{
+            background: 'linear-gradient(to top, rgba(0,5,18,0.95) 0%, rgba(0,5,18,0.85) 50%, rgba(0,5,18,0.4) 100%)',
+          }}
         >
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
@@ -26,7 +29,8 @@ export default function ChoicePanel({ choices, visible, onSelect }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.15 }}
-            className="text-maze-muted text-xs uppercase tracking-[0.25em] mb-4 text-center font-medium"
+            className="text-[#c9a054] text-xs uppercase tracking-[0.25em] mb-4 text-center font-medium font-[family-name:var(--font-display)]"
+            style={{ textShadow: '0 1px 3px rgba(0,0,0,0.7)' }}
           >
             Make Your Choice
           </motion.p>

@@ -14,7 +14,7 @@ export default function TypewriterText({ text, speed = 35, onComplete, className
       {displayedText}
       {!isComplete && (
         <motion.span
-          className="inline-block w-0.5 h-[1.1em] bg-maze-primary align-middle ml-0.5 rounded-full"
+          className="inline-block w-0.5 h-[1.1em] bg-[#c9a054] align-middle ml-0.5 rounded-full"
           animate={{ opacity: [1, 0.2] }}
           transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse' }}
         />

@@ -41,38 +41,42 @@ export default function DialogSystem() {
   if (!currentDialog) return null
 
   const hasMore = currentDialogIndex < dialogQueue.length - 1
+  const showPrompt = !isTyping && !showChoices && hasMore
 
   return (
-    <div className="flex-1 flex flex-col justify-start px-4 pb-4" style={{ paddingTop: '18vh' }} onClick={handleAdvance}>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`${currentDialog.speaker}-${currentDialogIndex}`}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.25 }}
-        >
-          <NPCDialog
-            speaker={currentDialog.speaker}
-            text={currentDialog.text}
-            emotion={currentDialog.emotion}
-            onComplete={completeTyping}
-          />
-        </motion.div>
-      </AnimatePresence>
-
-      {!isTyping && !showChoices && hasMore && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex justify-center items-center gap-2 mt-3"
-        >
-          <kbd className="px-1.5 py-0.5 text-[10px] bg-maze-800 border border-maze-600 rounded text-maze-muted font-mono">
-            SPACE
-          </kbd>
-          <span className="text-maze-muted text-xs">继续</span>
-        </motion.div>
-      )}
-    </div>
+    <AnimatePresence>
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 z-10 px-4 sm:px-8"
+        onClick={handleAdvance}
+        animate={{
+          paddingBottom: showChoices ? '12rem' : '1.5rem',
+        }}
+        transition={{ duration: 0.35, ease: 'easeInOut' }}
+        style={{
+          background: 'linear-gradient(to top, rgba(0,5,18,0.95) 0%, rgba(0,5,18,0.7) 40%, rgba(0,5,18,0.3) 70%, transparent 100%)',
+          paddingTop: '4rem',
+        }}
+      >
+        <div className="max-w-2xl mx-auto">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${currentDialog.speaker}-${currentDialogIndex}`}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <NPCDialog
+                speaker={currentDialog.speaker}
+                text={currentDialog.text}
+                emotion={currentDialog.emotion}
+                onComplete={completeTyping}
+                showPrompt={showPrompt}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </motion.div>
+    </AnimatePresence>
   )
 }

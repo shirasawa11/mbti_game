@@ -28,7 +28,12 @@
       "Bash(start *)",
       "WebFetch(domain:coolors.co)",
       "Bash(git revert *)",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(node --check src/components/ui/NPCDialog.jsx)",
+      "Bash(node --check src/components/game/DialogSystem.jsx)",
+      "Bash(node --check src/components/ui/ChoiceButton.jsx)",
+      "Bash(node --check src/components/game/ChapterTransition.jsx)",
+      "Bash(npx vite *)"
     ]
   }
 }

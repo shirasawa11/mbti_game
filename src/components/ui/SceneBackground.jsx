@@ -238,9 +238,9 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
         {showImage && (
           <motion.div
             key={backgroundId}
-            initial={{ opacity: 0, filter: 'blur(12px)' }}
-            animate={{ opacity: imgLoaded ? 1 : 0, filter: imgLoaded ? 'blur(0px)' : 'blur(12px)' }}
-            transition={{ duration: 1.5, ease: 'easeInOut' }}
+            initial={{ opacity: 0, filter: 'blur(16px)' }}
+            animate={{ opacity: imgLoaded ? 1 : 0, filter: imgLoaded ? 'blur(0px)' : 'blur(16px)' }}
+            transition={{ duration: 2.8, ease: 'easeInOut' }}
             className="absolute inset-0"
           >
             <img

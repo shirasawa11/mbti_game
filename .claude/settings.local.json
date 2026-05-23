@@ -26,7 +26,8 @@
       "WebFetch(domain:docs.puter.com)",
       "Bash(cmd *)",
       "Bash(start *)",
-      "WebFetch(domain:coolors.co)"
+      "WebFetch(domain:coolors.co)",
+      "Bash(git revert *)"
     ]
   }
 }

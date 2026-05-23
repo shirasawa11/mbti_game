@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import NPCDialog from '../ui/NPCDialog'
 import useDialogStore from '../../store/dialogStore'
 
-export default function DialogSystem({ onDialogEnd }) {
+export default function DialogSystem() {
   const dialogQueue = useDialogStore((s) => s.dialogQueue)
   const currentDialogIndex = useDialogStore((s) => s.currentDialogIndex)
   const isTyping = useDialogStore((s) => s.isTyping)
@@ -23,12 +23,8 @@ export default function DialogSystem({ onDialogEnd }) {
 
     if (showChoices) return
 
-    if (currentDialogIndex < dialogQueue.length - 1) {
-      advanceDialog()
-    } else {
-      onDialogEnd?.()
-    }
-  }, [currentDialog, isTyping, showChoices, currentDialogIndex, dialogQueue.length, advanceDialog, completeTyping, onDialogEnd])
+    advanceDialog()
+  }, [currentDialog, isTyping, showChoices, advanceDialog, completeTyping])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -51,10 +47,10 @@ export default function DialogSystem({ onDialogEnd }) {
       <AnimatePresence mode="wait">
         <motion.div
           key={`${currentDialog.speaker}-${currentDialogIndex}`}
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.25 }}
         >
           <NPCDialog
             speaker={currentDialog.speaker}
@@ -65,20 +61,16 @@ export default function DialogSystem({ onDialogEnd }) {
         </motion.div>
       </AnimatePresence>
 
-      {!isTyping && !showChoices && (
+      {!isTyping && !showChoices && hasMore && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="flex justify-center items-center gap-2 mt-3"
         >
-          {hasMore && (
-            <>
-              <kbd className="px-1.5 py-0.5 text-[10px] bg-maze-700 border border-maze-600 rounded text-maze-subtle font-mono">
-                Space
-              </kbd>
-              <span className="text-maze-subtle text-xs">或点击继续</span>
-            </>
-          )}
+          <kbd className="px-1.5 py-0.5 text-[10px] bg-maze-800 border border-maze-600 rounded text-maze-muted font-mono">
+            SPACE
+          </kbd>
+          <span className="text-maze-muted text-xs">继续</span>
         </motion.div>
       )}
     </div>

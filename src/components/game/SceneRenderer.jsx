@@ -70,22 +70,25 @@ export default function SceneRenderer({ onChapterEnd }) {
   return (
     <SceneBackground atmosphere={scene?.atmosphere || 'default'}>
       <div className="h-full flex flex-col">
-        <div className="px-4 pt-6">
+        {/* Header bar */}
+        <div className="px-4 pt-6 pb-2">
           <motion.div
             key={currentChapter}
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-3"
           >
-            <span className="text-maze-subtle text-xs tracking-widest uppercase">
-              {getChapter(currentChapter)?.title || `第${currentChapter}章`}
+            <span className="text-maze-muted text-[10px] tracking-[0.25em] uppercase font-medium">
+              {getChapter(currentChapter)?.title || `CH.${currentChapter}`}
             </span>
-            <div className="flex gap-1.5">
+            <div className="flex gap-1.5 ml-auto">
               {[1, 2, 3, 4, 5].map((ch) => (
                 <div
                   key={ch}
-                  className={`w-1.5 h-1.5 rounded-full transition-colors duration-500 ${
-                    ch <= currentChapter ? 'bg-maze-accent' : 'bg-maze-600'
+                  className={`h-1 rounded-full transition-all duration-500 ${
+                    ch <= currentChapter
+                      ? 'bg-maze-primary shadow-[0_0_6px_rgba(124,58,237,0.5)] w-4'
+                      : 'bg-maze-700 w-2'
                   }`}
                 />
               ))}
@@ -93,11 +96,7 @@ export default function SceneRenderer({ onChapterEnd }) {
           </motion.div>
         </div>
 
-        <DialogSystem onDialogEnd={() => {
-          if (sceneRef.current?.choices?.length === 0) {
-            setIsEndOfChapter(true)
-          }
-        }} />
+        <DialogSystem />
 
         <ChoicePanel
           choices={currentChoices}
@@ -106,26 +105,36 @@ export default function SceneRenderer({ onChapterEnd }) {
         />
       </div>
 
+      {/* Chapter end overlay */}
       <AnimatePresence>
         {isEndOfChapter && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 z-50 flex items-center justify-center bg-maze-900/60 backdrop-blur-sm"
+            className="absolute inset-0 z-50 flex items-center justify-center bg-maze-950/70 backdrop-blur-sm"
           >
-            <motion.button
+            <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.2, type: 'spring' }}
-              onClick={handleChapterEnd}
-              className="px-10 py-4 rounded-xl bg-maze-accent/30 border-2 border-maze-accent/60
-                        text-maze-accent text-lg font-medium
-                        hover:bg-maze-accent/40 hover:border-maze-accent hover:shadow-[0_0_30px_rgba(124,58,237,0.3)]
-                        transition-all duration-300 cursor-pointer"
+              transition={{ delay: 0.3, type: 'spring', stiffness: 200, damping: 20 }}
+              className="text-center"
             >
-              {currentChapter < 5 ? '进入下一章' : '揭晓人格真相'}
-            </motion.button>
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: 60 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                className="h-px mx-auto mb-6"
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(124,58,237,0.6), transparent)' }}
+              />
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={handleChapterEnd}
+                className="btn-primary px-10 py-4 text-lg tracking-wider"
+              >
+                {currentChapter < 5 ? 'NEXT CHAPTER' : 'REVEAL YOUR TYPE'}
+              </motion.button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

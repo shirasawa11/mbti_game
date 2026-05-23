@@ -68,7 +68,7 @@ export default function SceneRenderer({ onChapterEnd }) {
   }
 
   return (
-    <SceneBackground atmosphere={scene?.atmosphere || 'default'}>
+    <SceneBackground atmosphere={scene?.atmosphere || 'default'} backgroundId={scene?.background}>
       <div className="h-full flex flex-col">
         {/* Header bar */}
         <div className="px-4 pt-6 pb-2">

@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react'
+import { useRef, useEffect, useCallback, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const atmosphereConfigs = {
@@ -120,11 +120,21 @@ function createParticle(type) {
   }
 }
 
-export default function SceneBackground({ atmosphere = 'default', children }) {
+export default function SceneBackground({ atmosphere = 'default', backgroundId, children }) {
   const canvasRef = useRef(null)
   const particlesRef = useRef([])
   const animFrameRef = useRef(null)
+  const [imgLoaded, setImgLoaded] = useState(false)
+  const [imgError, setImgError] = useState(false)
   const config = atmosphereConfigs[atmosphere] || atmosphereConfigs.default
+
+  const imageSrc = backgroundId ? `/images/backgrounds/${backgroundId}.png` : null
+
+  // Reset image state when background changes
+  useEffect(() => {
+    setImgLoaded(false)
+    setImgError(false)
+  }, [imageSrc])
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current
@@ -137,7 +147,6 @@ export default function SceneBackground({ atmosphere = 'default', children }) {
     ctx.clearRect(0, 0, w, h)
 
     for (const p of particles) {
-      // Update position
       if (p.rise) {
         p.y -= p.speed * 0.3
         if (p.y < -0.05) { p.y = 1.05; p.x = Math.random() }
@@ -146,7 +155,6 @@ export default function SceneBackground({ atmosphere = 'default', children }) {
       }
       p.x += Math.sin(Date.now() * 0.0008 + p.phase) * p.wobble * 0.15 || 0
 
-      // Wrap
       if (p.y > 1.05) p.y = -0.05
       if (p.x > 1.05) p.x = -0.05
       if (p.x < -0.05) p.x = 1.05
@@ -201,6 +209,7 @@ export default function SceneBackground({ atmosphere = 'default', children }) {
   }, [atmosphere])
 
   const gradientStr = `linear-gradient(170deg, ${config.gradient[0]}, ${config.gradient[1]} 50%, ${config.gradient[2]})`
+  const showImage = imageSrc && !imgError
 
   return (
     <AnimatePresence mode="wait">
@@ -212,8 +221,31 @@ export default function SceneBackground({ atmosphere = 'default', children }) {
         transition={{ duration: 0.8 }}
         className="absolute inset-0 overflow-hidden"
       >
-        {/* Base gradient */}
+        {/* Base gradient (always visible, behind image) */}
         <div className="absolute inset-0" style={{ background: gradientStr }} />
+
+        {/* Background image */}
+        {showImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: imgLoaded ? 1 : 0 }}
+            transition={{ duration: 1.2 }}
+            className="absolute inset-0"
+          >
+            <img
+              src={imageSrc}
+              alt=""
+              onLoad={() => setImgLoaded(true)}
+              onError={() => setImgError(true)}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            {/* Subtle dark overlay on image for text readability */}
+            <div
+              className="absolute inset-0"
+              style={{ background: 'rgba(0, 5, 16, 0.35)' }}
+            />
+          </motion.div>
+        )}
 
         {/* Ambient overlay */}
         <div className="absolute inset-0" style={{ background: config.overlay }} />

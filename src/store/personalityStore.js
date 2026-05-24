@@ -36,10 +36,10 @@ const usePersonalityStore = create((set, get) => ({
   getDimensionScores: () => {
     const { traits } = get()
     return {
-      EI: { E: traits.E, I: traits.I, dominant: traits.E >= traits.I ? 'E' : 'I', ratio: traits.E + traits.I > 0 ? Math.round((Math.max(traits.E, traits.I) / (traits.E + traits.I)) * 100) : 50 },
-      SN: { S: traits.S, N: traits.N, dominant: traits.S >= traits.N ? 'S' : 'N', ratio: traits.S + traits.N > 0 ? Math.round((Math.max(traits.S, traits.N) / (traits.S + traits.N)) * 100) : 50 },
-      TF: { T: traits.T, F: traits.F, dominant: traits.T >= traits.F ? 'T' : 'F', ratio: traits.T + traits.F > 0 ? Math.round((Math.max(traits.T, traits.F) / (traits.T + traits.F)) * 100) : 50 },
-      JP: { J: traits.J, P: traits.P, dominant: traits.J >= traits.P ? 'J' : 'P', ratio: traits.J + traits.P > 0 ? Math.round((Math.max(traits.J, traits.P) / (traits.J + traits.P)) * 100) : 50 },
+      EI: { E: traits.E, I: traits.I, dominant: traits.E >= traits.I ? 'E' : 'I', percentage: traits.E + traits.I > 0 ? Math.round((Math.max(traits.E, traits.I) / (traits.E + traits.I)) * 100) : 50 },
+      SN: { S: traits.S, N: traits.N, dominant: traits.S >= traits.N ? 'S' : 'N', percentage: traits.S + traits.N > 0 ? Math.round((Math.max(traits.S, traits.N) / (traits.S + traits.N)) * 100) : 50 },
+      TF: { T: traits.T, F: traits.F, dominant: traits.T >= traits.F ? 'T' : 'F', percentage: traits.T + traits.F > 0 ? Math.round((Math.max(traits.T, traits.F) / (traits.T + traits.F)) * 100) : 50 },
+      JP: { J: traits.J, P: traits.P, dominant: traits.J >= traits.P ? 'J' : 'P', percentage: traits.J + traits.P > 0 ? Math.round((Math.max(traits.J, traits.P) / (traits.J + traits.P)) * 100) : 50 },
     }
   },
 

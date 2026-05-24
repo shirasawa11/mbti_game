@@ -15,29 +15,55 @@ export default function BehaviorSummary({ personality, choiceHistory }) {
         Behavioral Analysis
       </p>
 
+      {/* Story-integrated personality summary */}
       <p className="text-maze-text text-sm leading-relaxed mb-5 font-[family-name:var(--font-serif)]">
         {personality.summary}
       </p>
 
-      <div className="grid grid-cols-2 gap-3 mb-4">
+      {/* Detailed behavioral dimensions with story context */}
+      <div className="space-y-3 mb-5">
         <div className="bg-maze-950/50 rounded-lg p-3 border border-maze-700">
-          <p className="text-maze-muted text-[10px] uppercase tracking-wider mb-2">社交方式</p>
-          <p className="text-maze-text text-sm font-medium">{analysis.socialTendency}</p>
+          <p className="text-maze-primary text-xs font-semibold mb-1.5 tracking-wide">社交方式</p>
+          <p className="text-maze-text text-sm font-medium mb-1">{analysis.socialTendency}</p>
+          <p className="text-maze-muted text-xs leading-relaxed">{analysis.socialDetail}</p>
         </div>
         <div className="bg-maze-950/50 rounded-lg p-3 border border-maze-700">
-          <p className="text-maze-muted text-[10px] uppercase tracking-wider mb-2">决策风格</p>
-          <p className="text-maze-text text-sm font-medium">{analysis.decisionStyle}</p>
+          <p className="text-maze-primary text-xs font-semibold mb-1.5 tracking-wide">决策风格</p>
+          <p className="text-maze-text text-sm font-medium mb-1">{analysis.decisionStyle}</p>
+          <p className="text-maze-muted text-xs leading-relaxed">{analysis.decisionDetail}</p>
         </div>
         <div className="bg-maze-950/50 rounded-lg p-3 border border-maze-700">
-          <p className="text-maze-muted text-[10px] uppercase tracking-wider mb-2">行动模式</p>
-          <p className="text-maze-text text-sm font-medium">{analysis.riskAttitude}</p>
-        </div>
-        <div className="bg-maze-950/50 rounded-lg p-3 border border-maze-700">
-          <p className="text-maze-muted text-[10px] uppercase tracking-wider mb-2">关键决策</p>
-          <p className="text-maze-text text-sm font-medium">{analysis.totalChoices} 次</p>
+          <p className="text-maze-primary text-xs font-semibold mb-1.5 tracking-wide">行动模式</p>
+          <p className="text-maze-text text-sm font-medium mb-1">{analysis.riskAttitude}</p>
+          <p className="text-maze-muted text-xs leading-relaxed">{analysis.riskDetail}</p>
         </div>
       </div>
 
+      {/* Key moment */}
+      {analysis.keyMoment && (
+        <div className="bg-maze-950/30 rounded-lg p-3 mb-5 border border-maze-gold/20">
+          <p className="text-maze-gold text-xs font-semibold mb-1.5 tracking-wide">关键时刻</p>
+          <p className="text-maze-text text-sm leading-relaxed font-[family-name:var(--font-serif)] italic">
+            {analysis.keyMoment}
+          </p>
+        </div>
+      )}
+
+      {/* Stats row */}
+      <div className="grid grid-cols-2 gap-3 mb-5">
+        <div className="bg-maze-950/50 rounded-lg p-3 border border-maze-700 text-center">
+          <p className="text-maze-muted text-[10px] uppercase tracking-wider mb-1">关键决策</p>
+          <p className="text-maze-primary text-xl font-bold font-[family-name:var(--font-display)]">{analysis.totalChoices}</p>
+          <p className="text-maze-muted text-[10px]">次重大选择</p>
+        </div>
+        <div className="bg-maze-950/50 rounded-lg p-3 border border-maze-700 text-center">
+          <p className="text-maze-muted text-[10px] uppercase tracking-wider mb-1">元素特质</p>
+          <p className="text-maze-gold text-xl font-bold font-[family-name:var(--font-display)]">{personality.element}</p>
+          <p className="text-maze-muted text-[10px]">核心属性</p>
+        </div>
+      </div>
+
+      {/* Strengths & weaknesses */}
       <div className="grid grid-cols-2 gap-3">
         <div>
           <p className="text-maze-primary text-xs font-semibold mb-2 tracking-wide">STRENGTHS</p>

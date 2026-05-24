@@ -274,14 +274,17 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
         {/* Base gradient (always visible, behind image) */}
         <div className="absolute inset-0" style={{ background: gradientStr }} />
 
-        {/* Two image layers for crossfade */}
+        {/* Two image layers for crossfade — new fades in from blur, old fades out to blur */}
         {slots.map((slot, i) =>
           slot ? (
             <motion.div
               key={slot.id + '-' + i}
-              initial={i === activeSlot ? { opacity: 1 } : { opacity: 0 }}
-              animate={{ opacity: i === activeSlot ? 1 : 0 }}
-              transition={{ duration: 1.5, ease: 'easeInOut' }}
+              initial={{ opacity: 0, filter: 'blur(8px)' }}
+              animate={{
+                opacity: i === activeSlot ? 1 : 0,
+                filter: i === activeSlot ? 'blur(0px)' : 'blur(8px)',
+              }}
+              transition={{ duration: 1.2, ease: 'easeInOut' }}
               className="absolute inset-0"
             >
               <img

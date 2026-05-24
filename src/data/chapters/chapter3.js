@@ -23,7 +23,7 @@ const chapter3 = {
           id: 'accept_trade',
           text: '接受交易——真相更重要',
           subtext: '你想知道真相，无论代价是什么',
-          effects: { T: 3, N: 1, E: 1 },
+          effects: { T: 3, N: 1, E: 1, J: 1 },
           flags: { acceptedTrade: true },
           nextScene: 'ch3_trade_accepted',
         },

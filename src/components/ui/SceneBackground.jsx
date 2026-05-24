@@ -1,6 +1,25 @@
 import { useRef, useEffect, useCallback, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+const BASE = import.meta.env.BASE_URL || '/'
+
+function preloadImage(bgId, ext) {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => resolve(ext)
+    img.onerror = () => reject()
+    img.src = `${BASE}images/backgrounds/${bgId}.${ext}`
+  })
+}
+
+async function loadBackgroundImage(bgId) {
+  try { return await preloadImage(bgId, 'png') }
+  catch {
+    try { return await preloadImage(bgId, 'jpg') }
+    catch { return null }
+  }
+}
+
 const atmosphereConfigs = {
   oppressive: {
     gradient: ['#001125', '#001D4A', '#001125'],
@@ -139,28 +158,56 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
   const particlesRef = useRef([])
   const animFrameRef = useRef(null)
   const speedRef = useRef(1.0)
-  const [imgLoaded, setImgLoaded] = useState(false)
-  const [imgError, setImgError] = useState(false)
-  const [imgExt, setImgExt] = useState('png')
+  const [displayBg, setDisplayBg] = useState(null)   // { id, ext }
+  const [displayReady, setDisplayReady] = useState(false)
+  const [hasError, setHasError] = useState(false)
+  const loadIdRef = useRef(null)   // track which backgroundId we're currently loading
+  const cacheRef = useRef({})      // cache loaded image extensions
   const config = atmosphereConfigs[atmosphere] || atmosphereConfigs.default
   speedRef.current = config.particleSpeed || 1.0
 
-  const imageSrc = backgroundId ? `${import.meta.env.BASE_URL}images/backgrounds/${backgroundId}.${imgExt}` : null
-
-  // Reset image state when background changes
   useEffect(() => {
-    setImgLoaded(false)
-    setImgError(false)
-    setImgExt('png')
+    if (!backgroundId) {
+      setDisplayBg(null)
+      setDisplayReady(false)
+      setHasError(false)
+      return
+    }
+
+    const id = backgroundId
+    loadIdRef.current = id
+
+    // If cached, use immediately
+    if (cacheRef.current[id]) {
+      setDisplayBg({ id, ext: cacheRef.current[id] })
+      setDisplayReady(true)
+      setHasError(false)
+      return
+    }
+
+    // Preload in background — keep old image visible
+    let cancelled = false
+    loadBackgroundImage(id).then((ext) => {
+      if (cancelled || loadIdRef.current !== id) return
+      if (ext) {
+        cacheRef.current[id] = ext
+        setDisplayBg({ id, ext })
+        setDisplayReady(true)
+        setHasError(false)
+      } else {
+        if (loadIdRef.current === id) {
+          setDisplayBg({ id, ext: 'png' })
+          setDisplayReady(false)
+          setHasError(true)
+        }
+      }
+    })
+
+    return () => { cancelled = true }
   }, [backgroundId])
 
-  const handleImgError = () => {
-    if (imgExt === 'png') {
-      setImgExt('jpg')
-    } else {
-      setImgError(true)
-    }
-  }
+  const showImage = displayBg && !hasError
+  const imageSrc = showImage ? `${BASE}images/backgrounds/${displayBg.id}.${displayBg.ext}` : null
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current
@@ -235,7 +282,6 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
   }, [atmosphere])
 
   const gradientStr = `linear-gradient(170deg, ${config.gradient[0]}, ${config.gradient[1]} 50%, ${config.gradient[2]})`
-  const showImage = imageSrc && !imgError
 
   return (
     <AnimatePresence mode="wait">
@@ -253,17 +299,15 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
         {/* Background image */}
         {showImage && (
           <motion.div
-            key={backgroundId}
-            initial={{ opacity: 0, filter: 'blur(16px)' }}
-            animate={{ opacity: imgLoaded ? 1 : 0, filter: imgLoaded ? 'blur(0px)' : 'blur(16px)' }}
-            transition={{ duration: 2.8, ease: 'easeInOut' }}
+            key={displayBg?.id || 'img'}
+            initial={{ opacity: 0, filter: 'blur(12px)' }}
+            animate={{ opacity: displayReady ? 1 : 0, filter: displayReady ? 'blur(0px)' : 'blur(12px)' }}
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
             className="absolute inset-0"
           >
             <img
               src={imageSrc}
               alt=""
-              onLoad={() => setImgLoaded(true)}
-              onError={handleImgError}
               className="absolute inset-0 w-full h-full object-cover"
             />
             {/* Subtle dark overlay on image for text readability */}

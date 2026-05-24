@@ -93,7 +93,7 @@ const chapter4 = {
           id: 'keep_jumping',
           text: '继续保持速度——不要停下来',
           subtext: '停下来就完了',
-          effects: { P: 2, E: 2 },
+          effects: { P: 1, E: 2 },
           flags: { keptJumping: true },
           nextScene: 'ch4_end',
         },

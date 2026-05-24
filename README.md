@@ -1,16 +1,48 @@
-# React + Vite
+# 人格迷宫 · Personality Maze
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> 你不在做测试。你在探索一座迷宫。而迷宫，也在探索你。
 
-Currently, two official plugins are available:
+**互动文字冒险 × 隐性 MBTI 测试**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 玩法
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+你在一座神秘迷宫中醒来，失去记忆，面前是 5 个章节的故事旅程——**觉醒、迷雾、抉镜、深渊、真相**。每走一步，你都会面临选择：帮助受伤的旅人，还是追随门后的低语？相信迷雾中的引路人，还是独自前行？与镜中的另一个自己交易，还是拒绝？
 
-## Expanding the ESLint configuration
+**你不知道的是——每一个选择都在悄悄绘制你的人格地图。**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+到达迷宫核心后，系统根据你在故事中做出的全部选择，生成你的 MBTI 人格类型（覆盖全部 16 种），展示四个维度的占比分析、基于剧情的行为解读，以及一份可保存为图片的完整分析报告。
+
+## 亮点
+
+- **故事即测试** — 没有问卷、没有量表。所有文字采用沉浸式内心独白风格，你的 MBTI 在你不知不觉中被测量
+- **动态氛围系统** — 12 种氛围主题（压迫/迷雾/深渊/镜屋…），Canvas 粒子随剧情节奏呼吸变化，背景图切换带有 2.8 秒模糊对焦转场
+- **精心打磨的 UI** — Cinzel 英文标题 + Noto Serif SC 中文正文，磨砂玻璃对话底框，迷雾发光按钮，金色呼吸灯交互提示
+- **深度结果解析** — 不只是四个字母。每份报告结合你的故事选择，从社交方式、决策风格、行动模式三个维度分析你的行为特征，并关联认知功能进行解读
+- **一键分享** — 将完整分析页保存为图片，或复制文案分享
+
+## 技术栈
+
+React + Vite + TailwindCSS + Framer Motion + Zustand + Canvas 2D
+
+## 线上地址
+
+[https://shirasawa11.github.io/mbti_game/](https://shirasawa11.github.io/mbti_game/)
+
+## 本地运行
+
+```bash
+npm install
+npm run dev
+```
+
+## 部署
+
+```bash
+npx vite build
+cp -r dist/* docs/
+git add -A && git commit -m "..." && git push origin main
+```
+
+GitHub Pages 自动从 `docs/` 目录部署。

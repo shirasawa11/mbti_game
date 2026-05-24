@@ -144,7 +144,7 @@ const chapter4 = {
     ch4_end: {
       id: 'ch4_end',
       chapter: 4,
-      background: '9',
+      background: 'abyss_fade',
       atmosphere: 'calm',
       dialogs: [
         { speaker: 'narrator', text: '你成功穿越了深渊。', delay: 0 },

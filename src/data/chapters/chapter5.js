@@ -7,7 +7,7 @@ const chapter5 = {
     ch5_core: {
       id: 'ch5_core',
       chapter: 5,
-      background: '10',
+      background: 'core',
       atmosphere: 'solemn',
       dialogs: [
         { speaker: 'narrator', text: '你终于走到了迷宫的核心。', delay: 0 },
@@ -52,7 +52,7 @@ const chapter5 = {
     ch5_kept: {
       id: 'ch5_kept',
       chapter: 5,
-      background: '10',
+      background: 'core',
       atmosphere: 'calm',
       dialogs: [
         { speaker: 'maze_keeper', text: '你选择了完整。', emotion: 'respectful', delay: 0 },
@@ -67,7 +67,7 @@ const chapter5 = {
     ch5_restart: {
       id: 'ch5_restart',
       chapter: 5,
-      background: '10',
+      background: 'core',
       atmosphere: 'mysterious',
       dialogs: [
         { speaker: 'maze_keeper', text: '很少人选择这个。', emotion: 'curious', delay: 0 },
@@ -82,7 +82,7 @@ const chapter5 = {
     ch5_third: {
       id: 'ch5_third',
       chapter: 5,
-      background: '10',
+      background: 'core',
       atmosphere: 'mysterious',
       dialogs: [
         { speaker: 'maze_keeper', text: '...', emotion: 'curious', delay: 0 },

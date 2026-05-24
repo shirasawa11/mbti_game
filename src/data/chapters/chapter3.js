@@ -73,7 +73,7 @@ const chapter3 = {
           id: 'pause_reflect',
           text: '停一下，消化刚才的信息',
           subtext: '你需要一分钟...就一分钟',
-          effects: { I: 1, S: 2 },
+          effects: { I: 1, S: 2, P: 1 },
           flags: { pausedToReflect: true },
           nextScene: 'ch3_end',
         },

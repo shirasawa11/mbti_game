@@ -3,23 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const BASE = import.meta.env.BASE_URL || '/'
 
-function preloadImage(bgId, ext) {
-  return new Promise((resolve, reject) => {
-    const img = new Image()
-    img.onload = () => resolve(ext)
-    img.onerror = () => reject()
-    img.src = `${BASE}images/backgrounds/${bgId}.${ext}`
-  })
-}
-
-async function loadBackgroundImage(bgId) {
-  try { return await preloadImage(bgId, 'png') }
-  catch {
-    try { return await preloadImage(bgId, 'jpg') }
-    catch { return null }
-  }
-}
-
 const atmosphereConfigs = {
   oppressive: {
     gradient: ['#001125', '#001D4A', '#001125'],
@@ -158,56 +141,51 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
   const particlesRef = useRef([])
   const animFrameRef = useRef(null)
   const speedRef = useRef(1.0)
-  const [displayBg, setDisplayBg] = useState(null)   // { id, ext }
-  const [displayReady, setDisplayReady] = useState(false)
-  const [hasError, setHasError] = useState(false)
-  const loadIdRef = useRef(null)   // track which backgroundId we're currently loading
-  const cacheRef = useRef({})      // cache loaded image extensions
+  // Two image slots for crossfade — avoids Chrome's src-change flicker
+  const [slots, setSlots] = useState([null, null]) // [{id,ext,src}, {id,ext,src}]
+  const [activeSlot, setActiveSlot] = useState(0)
+  const loadIdRef = useRef(null)
   const config = atmosphereConfigs[atmosphere] || atmosphereConfigs.default
   speedRef.current = config.particleSpeed || 1.0
 
   useEffect(() => {
     if (!backgroundId) {
-      setDisplayBg(null)
-      setDisplayReady(false)
-      setHasError(false)
+      setSlots([null, null])
+      setActiveSlot(0)
       return
     }
+
+    // Already showing this background
+    const active = slots[activeSlot]
+    if (active && active.id === backgroundId) return
 
     const id = backgroundId
     loadIdRef.current = id
+    const nextSlot = 1 - activeSlot
+    let cancelled = false
 
-    // If cached, use immediately
-    if (cacheRef.current[id]) {
-      setDisplayBg({ id, ext: cacheRef.current[id] })
-      setDisplayReady(true)
-      setHasError(false)
-      return
+    function tryExt(ext) {
+      const src = `${BASE}images/backgrounds/${id}.${ext}`
+      const img = new Image()
+      img.onload = () => {
+        if (cancelled || loadIdRef.current !== id) return
+        setSlots((prev) => {
+          const next = [...prev]
+          next[nextSlot] = { id, ext, src }
+          return next
+        })
+        setActiveSlot(nextSlot)
+      }
+      img.onerror = () => {
+        if (cancelled || loadIdRef.current !== id) return
+        if (ext === 'png') tryExt('jpg')
+      }
+      img.src = src
     }
 
-    // Preload in background — keep old image visible
-    let cancelled = false
-    loadBackgroundImage(id).then((ext) => {
-      if (cancelled || loadIdRef.current !== id) return
-      if (ext) {
-        cacheRef.current[id] = ext
-        setDisplayBg({ id, ext })
-        setDisplayReady(true)
-        setHasError(false)
-      } else {
-        if (loadIdRef.current === id) {
-          setDisplayBg({ id, ext: 'png' })
-          setDisplayReady(false)
-          setHasError(true)
-        }
-      }
-    })
-
+    tryExt('png')
     return () => { cancelled = true }
-  }, [backgroundId])
-
-  const showImage = displayBg && !hasError
-  const imageSrc = showImage ? `${BASE}images/backgrounds/${displayBg.id}.${displayBg.ext}` : null
+  }, [backgroundId, activeSlot])
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current
@@ -296,26 +274,27 @@ export default function SceneBackground({ atmosphere = 'default', backgroundId, 
         {/* Base gradient (always visible, behind image) */}
         <div className="absolute inset-0" style={{ background: gradientStr }} />
 
-        {/* Background image */}
-        {showImage && (
-          <motion.div
-            key={displayBg?.id || 'img'}
-            initial={{ opacity: 0, filter: 'blur(12px)' }}
-            animate={{ opacity: displayReady ? 1 : 0, filter: displayReady ? 'blur(0px)' : 'blur(12px)' }}
-            transition={{ duration: 1.2, ease: 'easeInOut' }}
-            className="absolute inset-0"
-          >
-            <img
-              src={imageSrc}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            {/* Subtle dark overlay on image for text readability */}
-            <div
+        {/* Two image layers for crossfade */}
+        {slots.map((slot, i) =>
+          slot ? (
+            <motion.div
+              key={slot.id + '-' + i}
+              initial={i === activeSlot ? { opacity: 1 } : { opacity: 0 }}
+              animate={{ opacity: i === activeSlot ? 1 : 0 }}
+              transition={{ duration: 1.5, ease: 'easeInOut' }}
               className="absolute inset-0"
-              style={{ background: 'rgba(0, 5, 16, 0.35)' }}
-            />
-          </motion.div>
+            >
+              <img
+                src={slot.src}
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: 'rgba(0, 5, 16, 0.35)' }}
+              />
+            </motion.div>
+          ) : null
         )}
 
         {/* Ambient overlay */}

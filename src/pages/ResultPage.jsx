@@ -99,21 +99,21 @@ export default function ResultPage() {
         <div className="flex gap-3 max-w-md w-full">
           <button
             onClick={handleSaveImage}
-            className="flex-1 min-h-[44px] py-3 rounded-xl bg-maze-primary/20 border border-maze-primary/40
-                       text-maze-primary font-medium tracking-wide
+            className="flex-1 min-h-[44px] py-2.5 rounded-xl bg-maze-primary/20 border border-maze-primary/40
                        hover:bg-maze-primary/30 hover:shadow-[0_0_20px_rgba(0,105,146,0.2)]
-                       transition-all duration-200 active:scale-[0.97] cursor-pointer text-sm"
+                       transition-all duration-200 active:scale-[0.97] cursor-pointer flex flex-col items-center justify-center"
           >
-            SAVE IMAGE
+            <span className="text-maze-primary font-semibold tracking-wide text-sm">保存图片</span>
+            <span className="text-maze-muted text-[10px] tracking-wide">SAVE IMAGE</span>
           </button>
           <button
             onClick={handleCopyText}
-            className="flex-1 min-h-[44px] py-3 rounded-xl bg-maze-800 border border-maze-600
-                       text-maze-subtle font-medium tracking-wide
+            className="flex-1 min-h-[44px] py-2.5 rounded-xl bg-maze-800 border border-maze-600
                        hover:bg-maze-700 hover:text-maze-text
-                       transition-all duration-200 active:scale-[0.97] cursor-pointer text-sm"
+                       transition-all duration-200 active:scale-[0.97] cursor-pointer flex flex-col items-center justify-center"
           >
-            COPY TEXT
+            <span className="text-maze-subtle font-semibold tracking-wide text-sm">复制文案</span>
+            <span className="text-maze-muted text-[10px] tracking-wide">COPY TEXT</span>
           </button>
         </div>
 
@@ -122,9 +122,10 @@ export default function ResultPage() {
           animate={{ opacity: 1 }}
           transition={{ delay: 4.2 }}
           onClick={handleReplay}
-          className="btn-ghost px-8 py-3 text-sm mt-2"
+          className="btn-ghost px-8 py-2.5 text-sm mt-2 flex flex-col items-center"
         >
-          RE-ENTER THE MAZE
+          <span className="font-semibold tracking-wide">重新进入迷宫</span>
+          <span className="text-maze-muted text-[10px] tracking-wide">RE-ENTER THE MAZE</span>
         </motion.button>
 
         <motion.p

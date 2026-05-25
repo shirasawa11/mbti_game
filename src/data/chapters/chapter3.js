@@ -2,6 +2,7 @@ const chapter3 = {
   id: 3,
   title: '第三章 · 抉择',
   subtitle: '理性与情感的交锋',
+  bgm: 'chapter3',
   startScene: 'ch3_mirror',
   scenes: {
     ch3_mirror: {

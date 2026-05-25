@@ -2,6 +2,7 @@ const chapter4 = {
   id: 4,
   title: '第四章 · 深渊',
   subtitle: '秩序与混沌的边界',
+  bgm: 'chapter4',
   startScene: 'ch4_enter',
   scenes: {
     ch4_enter: {

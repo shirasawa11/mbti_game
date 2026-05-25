@@ -5,6 +5,7 @@ import DialogSystem from './DialogSystem'
 import ChoicePanel from './ChoicePanel'
 import useGameStore from '../../store/gameStore'
 import useDialogStore from '../../store/dialogStore'
+import useAudioStore from '../../store/audioStore'
 import usePersonality from '../../hooks/usePersonality'
 import useGameProgress from '../../hooks/useGameProgress'
 import { getChapter } from '../../data/chapters'
@@ -16,12 +17,18 @@ export default function SceneRenderer({ onChapterEnd }) {
   const showChoices = useDialogStore((s) => s.showChoices)
   const currentChoices = useDialogStore((s) => s.currentChoices)
   const clearDialog = useDialogStore((s) => s.clearDialog)
+  const setActive = useAudioStore((s) => s.setActive)
   const { processChoice } = usePersonality()
   const { resolveChoice } = useGameProgress()
   const [scene, setScene] = useState(null)
   const [showChoicePanel, setShowChoicePanel] = useState(false)
   const [isEndOfChapter, setIsEndOfChapter] = useState(false)
   const sceneRef = useRef(null)
+
+  // Stop music when SceneRenderer unmounts (chapter transition / game end)
+  useEffect(() => {
+    return () => setActive(false)
+  }, [])
 
   useEffect(() => {
     if (!currentSceneId) return
@@ -33,7 +40,10 @@ export default function SceneRenderer({ onChapterEnd }) {
       setShowChoicePanel(false)
       setIsEndOfChapter(false)
       clearDialog()
-      setTimeout(() => pushDialog(currentScene), 300)
+      setTimeout(() => {
+        pushDialog(currentScene)
+        setActive(true)
+      }, 300)
     }
   }, [currentSceneId, currentChapter])
 

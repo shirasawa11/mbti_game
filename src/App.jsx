@@ -4,6 +4,12 @@ import HomePage from './pages/HomePage'
 import IntroPage from './pages/IntroPage'
 import GamePage from './pages/GamePage'
 import ResultPage from './pages/ResultPage'
+import BgmPlayer, { useBgmSync } from './components/ui/BgmPlayer'
+
+function BgmManager() {
+  useBgmSync()
+  return <BgmPlayer />
+}
 
 export default function App() {
   const gamePhase = useGameStore((s) => s.gamePhase)
@@ -28,6 +34,7 @@ export default function App() {
       <AnimatePresence mode="wait">
         {renderPage()}
       </AnimatePresence>
+      <BgmManager />
     </div>
   )
 }

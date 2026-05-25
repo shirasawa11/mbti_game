@@ -2,6 +2,7 @@ const chapter1 = {
   id: 1,
   title: '第一章 · 觉醒',
   subtitle: '黑暗中睁开双眼',
+  bgm: 'chapter1',
   startScene: 'ch1_wake',
   scenes: {
     ch1_wake: {

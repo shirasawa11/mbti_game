@@ -2,6 +2,7 @@ const chapter2 = {
   id: 2,
   title: '第二章 · 迷雾',
   subtitle: '信任还是孤行',
+  bgm: 'chapter2',
   startScene: 'ch2_enter',
   scenes: {
     ch2_enter: {

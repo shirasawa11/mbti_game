@@ -2,6 +2,7 @@ const chapter5 = {
   id: 5,
   title: '第五章 · 真相',
   subtitle: '你究竟是谁',
+  bgm: 'chapter5',
   startScene: 'ch5_core',
   scenes: {
     ch5_core: {

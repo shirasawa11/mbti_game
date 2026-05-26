@@ -1,11 +1,46 @@
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import useGameStore from '../store/gameStore'
+
+let overlayDismissed = false
 
 export default function HomePage() {
   const setPhase = useGameStore((s) => s.setPhase)
+  const [showOverlay, setShowOverlay] = useState(!overlayDismissed)
+
+  const dismissOverlay = () => {
+    overlayDismissed = true
+    setShowOverlay(false)
+  }
 
   return (
     <div className="h-full flex flex-col items-center justify-center px-6 relative overflow-hidden bg-maze-950">
+
+      {/* Unlock overlay — first click unlocks browser audio before ENTER button is shown */}
+      <AnimatePresence>
+        {showOverlay && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            onClick={dismissOverlay}
+            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-maze-950/90 backdrop-blur-sm cursor-pointer"
+          >
+            <motion.div
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="text-center"
+            >
+              <p className="text-maze-subtle text-sm tracking-[0.3em] mb-3">
+                触碰任意位置开始
+              </p>
+              <p className="text-maze-muted text-xs tracking-[0.2em]">
+                TAP ANYWHERE TO BEGIN
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Animated ambient background */}
       <motion.div
         animate={{ opacity: [0.4, 0.7, 0.4] }}

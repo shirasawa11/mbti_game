@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion'
+import useSfx from '../../hooks/useSfx'
 
 export default function ChoiceButton({ choice, onSelect, disabled, index }) {
+  const [sfx] = useSfx()
+
   return (
     <motion.button
       initial={{ opacity: 0, x: -20 }}
@@ -8,7 +11,8 @@ export default function ChoiceButton({ choice, onSelect, disabled, index }) {
       transition={{ delay: index * 0.08, duration: 0.35, ease: 'easeOut' }}
       whileTap={{ scale: 0.97 }}
       disabled={disabled}
-      onClick={() => onSelect(choice)}
+      onMouseEnter={() => sfx('choiceHover')}
+      onClick={() => { sfx('choiceSelect'); onSelect(choice) }}
       className="w-full text-left min-h-[52px] px-4 py-3.5 rounded-xl cursor-pointer
                  transition-all duration-300 ease-out relative overflow-hidden
                  bg-gradient-to-r from-maze-800/80 via-maze-800/50 to-maze-800/30

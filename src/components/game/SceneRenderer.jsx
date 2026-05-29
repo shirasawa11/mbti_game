@@ -9,6 +9,7 @@ import useAudioStore from '../../store/audioStore'
 import usePersonality from '../../hooks/usePersonality'
 import useGameProgress from '../../hooks/useGameProgress'
 import { getChapter } from '../../data/chapters'
+import VolToggle from '../ui/VolToggle'
 
 export default function SceneRenderer({ onChapterEnd }) {
   const currentChapter = useGameStore((s) => s.currentChapter)
@@ -91,6 +92,7 @@ export default function SceneRenderer({ onChapterEnd }) {
             <span className="chapter-title-ui">
               {getChapter(currentChapter)?.title || `CH.${currentChapter}`}
             </span>
+            <VolToggle />
             <div className="flex gap-1.5 ml-auto">
               {[1, 2, 3, 4, 5].map((ch) => (
                 <div

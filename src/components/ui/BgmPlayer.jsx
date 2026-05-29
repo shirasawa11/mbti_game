@@ -55,7 +55,9 @@ export default function BgmPlayer() {
   const trackRef = useRef(null)
   trackRef.current = track
 
-  const targetVol = muted ? 0 : volume
+  // Power curve — human ears are logarithmic, not linear.
+  // Slider at 0.3 → audio 0.09 (subtle background), 0.7 → 0.49 (clear), 1.0 → 1.0 (max)
+  const targetVol = muted ? 0 : volume * volume
 
   useEffect(() => {
     const a = new Audio()

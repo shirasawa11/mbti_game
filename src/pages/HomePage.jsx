@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import useGameStore from '../store/gameStore'
+import VolToggle from '../components/ui/VolToggle'
 
 let overlayDismissed = false
 
@@ -225,6 +226,11 @@ export default function HomePage() {
       >
         PUT ON HEADPHONES FOR THE BEST EXPERIENCE
       </motion.p>
+
+      {/* Volume toggle */}
+      <div className="absolute bottom-8 right-6 z-20">
+        <VolToggle />
+      </div>
     </div>
   )
 }

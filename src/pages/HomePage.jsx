@@ -22,20 +22,29 @@ export default function HomePage() {
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             onClick={dismissOverlay}
-            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-maze-950/90 backdrop-blur-sm cursor-pointer"
+            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-maze-950/95 backdrop-blur-sm cursor-pointer"
           >
+            {/* Subtle pulsing ring */}
+            <motion.div
+              animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute w-48 h-48 rounded-full"
+              style={{ background: 'radial-gradient(circle, rgba(0,105,146,0.08) 0%, transparent 70%)' }}
+            />
             <motion.div
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="text-center"
+              className="text-center relative z-10"
             >
-              <p className="text-maze-subtle text-sm tracking-[0.3em] mb-3">
-                触碰任意位置开始
+              <p className="text-lg font-bold text-maze-primary text-glow mb-3 tracking-[0.2em]"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                点击开始游戏
               </p>
-              <p className="text-maze-muted text-xs tracking-[0.2em]">
-                TAP ANYWHERE TO BEGIN
+              <p className="text-maze-muted text-xs tracking-[0.25em]">
+                CLICK TO START
               </p>
             </motion.div>
           </motion.div>

@@ -85,6 +85,15 @@ export default function BgmPlayer() {
       document.removeEventListener('pointerdown', unlock)
       document.removeEventListener('keydown', unlock)
 
+      // Synchronously unlock both Audio elements within the user gesture.
+      // Even a brief play()→pause() tells the browser this page is
+      // user-gesture-approved so later programmatic play() calls succeed.
+      ;[audioA.current, audioB.current].forEach((el) => {
+        if (!el) return
+        el.volume = 0
+        el.play().catch(() => {})
+      })
+
       if (bgmActiveRef.current && trackRef.current) {
         playTrack(getTrackSrc(trackRef.current))
       }

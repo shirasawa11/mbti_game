@@ -5,6 +5,7 @@ import IntroPage from './pages/IntroPage'
 import GamePage from './pages/GamePage'
 import ResultPage from './pages/ResultPage'
 import BgmPlayer, { useBgmSync } from './components/ui/BgmPlayer'
+import useSaveGame from './hooks/useSaveGame'
 
 function BgmManager() {
   useBgmSync()
@@ -13,6 +14,9 @@ function BgmManager() {
 
 export default function App() {
   const gamePhase = useGameStore((s) => s.gamePhase)
+
+  // Debounced auto-save on store changes + beforeunload
+  useSaveGame()
 
   const renderPage = () => {
     switch (gamePhase) {

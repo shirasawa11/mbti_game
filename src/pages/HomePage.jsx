@@ -5,9 +5,17 @@ import VolToggle from '../components/ui/VolToggle'
 
 let overlayDismissed = false
 
+function hasSave() {
+  try {
+    const d = JSON.parse(localStorage.getItem('mbti-save'))
+    return d?.ph === 'playing' && d?.sc
+  } catch { return false }
+}
+
 export default function HomePage() {
   const setPhase = useGameStore((s) => s.setPhase)
   const [showOverlay, setShowOverlay] = useState(!overlayDismissed)
+  const saved = hasSave()
 
   const dismissOverlay = () => {
     overlayDismissed = true
@@ -197,13 +205,28 @@ export default function HomePage() {
           </p>
         </motion.div>
 
+        {saved && (
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.6 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setPhase('playing')}
+            className="mist-glow-btn"
+          >
+            <span>继续迷宫</span>
+          </motion.button>
+        )}
         <motion.button
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6 }}
+          transition={{ delay: saved ? 1.8 : 1.6 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => setPhase('intro')}
-          className="mist-glow-btn"
+          onClick={() => {
+            try { localStorage.removeItem('mbti-save'); localStorage.removeItem('mbti-trait') } catch {}
+            setPhase('intro')
+          }}
+          className={saved ? 'btn-ghost mt-3' : 'mist-glow-btn'}
         >
           <span>ENTER THE MAZE</span>
         </motion.button>

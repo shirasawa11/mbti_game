@@ -22,30 +22,92 @@ export default function HomePage() {
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6, ease: 'easeInOut' }}
             onClick={dismissOverlay}
-            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-maze-950/95 backdrop-blur-sm cursor-pointer"
+            className="absolute inset-0 z-50 flex flex-col items-center justify-center cursor-pointer overflow-hidden"
+            style={{
+              background: 'radial-gradient(ellipse at 50% 40%, rgba(0,105,146,0.08) 0%, transparent 55%), radial-gradient(ellipse at 30% 70%, rgba(236,164,0,0.04) 0%, transparent 45%), #000D1A',
+            }}
           >
-            {/* Subtle pulsing ring */}
-            <motion.div
-              animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute w-48 h-48 rounded-full"
-              style={{ background: 'radial-gradient(circle, rgba(0,105,146,0.08) 0%, transparent 70%)' }}
+            {/* Scanline overlay */}
+            <div className="absolute inset-0 pointer-events-none opacity-[0.025]"
+              style={{
+                backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.5) 2px, rgba(255,255,255,0.5) 4px)',
+              }}
             />
+
+            {/* Staggered content — elements cascade top→bottom */}
             <motion.div
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="text-center relative z-10"
+              className="flex flex-col items-center"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.18, delayChildren: 0.35 } },
+              }}
             >
-              <p className="text-lg font-bold text-maze-primary text-glow mb-3 tracking-[0.2em]"
-                style={{ fontFamily: 'var(--font-display)' }}
+              {/* Top accent line */}
+              <motion.div
+                variants={{
+                  hidden: { width: 0, opacity: 0 },
+                  visible: { width: 100, opacity: 1, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] } },
+                }}
+                className="h-px mb-8"
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(0,210,255,0.5), transparent)' }}
+              />
+
+              {/* Game title */}
+              <motion.h1
+                variants={{
+                  hidden: { opacity: 0, y: 10, scale: 0.92 },
+                  visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 70, damping: 12 } },
+                }}
+                className="text-5xl font-bold text-gradient text-glow mb-3 font-[family-name:var(--font-display)] tracking-wide"
               >
-                点击开始游戏
-              </p>
-              <p className="text-maze-muted text-xs tracking-[0.25em]">
+                人格迷宫
+              </motion.h1>
+
+              {/* Subtitle — fades in right as title settles */}
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 4 },
+                  visible: { opacity: 0.4, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+                }}
+                className="text-maze-muted text-xs tracking-[0.2em] mb-10"
+              >
                 CLICK TO START
-              </p>
+              </motion.p>
+
+              {/* Button group — button + bottom line appear as one unit */}
+              <motion.div
+                className="flex flex-col items-center"
+                variants={{
+                  hidden: {},
+                  visible: { transition: { staggerChildren: 0.12 } },
+                }}
+              >
+                <motion.button
+                  type="button"
+                  variants={{
+                    hidden: { opacity: 0, y: 6 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } },
+                  }}
+                  className="mist-glow-btn pointer-events-none"
+                  style={{ fontSize: '1.3rem', letterSpacing: '0.22em' }}
+                >
+                  点击开始游戏
+                </motion.button>
+
+                {/* Bottom accent line */}
+                <motion.div
+                  variants={{
+                    hidden: { width: 0, opacity: 0 },
+                    visible: { width: 60, opacity: 1, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] } },
+                  }}
+                  className="h-px mt-8"
+                  style={{ background: 'linear-gradient(90deg, transparent, rgba(0,210,255,0.4), transparent)' }}
+                />
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
